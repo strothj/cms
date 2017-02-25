@@ -1,0 +1,26 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "description": "CMS",
+  "main": "index.js",
+  "repository": "https://github.com/strothj/cms.git",
+  "author": "strothj <jason@jasons.io>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node tools/build.js",
+    "dev": "webpack-dev-server --config tools/webpack.config.dev.js",
+    "lint": "eslint src/**/*.js src/**/*.jsx tools/**/*.js",
+    "test": "mocha --opts tools/mocha.opts",
+    "test:watch": "npm run test -- --watch"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "3.0.2",
+    "eslint-plugin-react": "6.9.0"
+  }
+}

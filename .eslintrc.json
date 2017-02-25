@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "browser": true,
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": [ "error", { "devDependencies": [ "**/*.spec.js" ] } ],
+    "react/jsx-filename-extension": ["error", { "extensions": [ ".jsx", ".spec.js" ] } ],
+    "no-unused-expressions": "off"
+  },
+  "extends": "airbnb"
+}
