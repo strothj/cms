@@ -1,16 +1,19 @@
 const buildPaths = require('./buildPaths');
 const autoprefixer = require('autoprefixer');
-const pkg = require('../package.json');
+const { resolve } = require('path');
+const { readFileSync } = require('fs');
+
+const babelrc = JSON.parse(readFileSync(resolve(__dirname, '../.babelrc')));
 
 // Webpack understands the native import syntax and uses it for tree shaking.
 // Disable Babel transformation of "import" statements.
 // https://webpack.js.org/guides/hmr-react/
 // https://github.com/kriasoft/react-static-boilerplate/blob/master/tools/webpack.config.js#L21
-const babelConfig = Object.assign({}, pkg.babel, {
+const babelConfig = Object.assign({}, babelrc, {
   babelrc: false,
   cacheDirectory: true,
   // eslint-disable-next-line no-confusing-arrow
-  presets: pkg.babel.presets.map(x => x === 'latest' ? ['latest', { es2015: { modules: false } }] : x),
+  presets: babelrc.presets.map(x => x === 'latest' ? ['latest', { es2015: { modules: false } }] : x),
 });
 
 module.exports = {

@@ -1,3 +1,3 @@
 /* eslint-disable no-console */
 
-console.log('server test');
+console.log('client');
