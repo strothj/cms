@@ -1,0 +1,5 @@
+--compilers js:babel-register
+--watch-extensions jsx
+--require ignore-styles
+--require babel-polyfill
+./src/**/*.spec.js
