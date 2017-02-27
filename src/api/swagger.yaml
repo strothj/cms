@@ -1,0 +1,20 @@
+swagger: '2.0'
+info:
+  title: CMS Api
+  description: API for content management system.
+  version: 1.0.0
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /users:
+    get:
+      description: Returns a list of users
+      parameters:
+        - name: per_page
+          in: query
+          description: Number of results to return per page
+          type: integer
+          default: 20
