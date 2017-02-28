@@ -1,7 +1,11 @@
 {
   "presets": [
-    "latest",
-    "stage-2",
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions"]
+      },
+      "modules": false
+    }],
     "react"
   ],
   "plugins": [

@@ -1,0 +1,42 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "description": "CMS",
+  "main": "index.js",
+  "repository": "https://github.com/strothj/cms.git",
+  "author": "strothj <jason@jasons.io>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node tools/build.js -- --all",
+    "build:frontend": "node tools/build.js -- --frontend",
+    "build:backend": "node tools/build.js -- --backend",
+    "dev": "webpack-dev-server --config tools/webpack.config.dev.js",
+    "lint": "eslint src/**/*.js src/**/*.jsx tools/**/*.js",
+    "test": "mocha --opts tools/mocha.opts",
+    "test:watch": "npm run test -- --watch"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-hot-loader": "3.0.0-beta.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.5",
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "eslint": "3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-loader": "^1.6.3",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "3.0.2",
+    "eslint-plugin-react": "6.9.0",
+    "html-webpack-plugin": "^2.28.0",
+    "webpack": "^2.2.1",
+    "webpack-merge": "^3.0.0"
+  }
+}
