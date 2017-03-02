@@ -1,39 +1,40 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const StartServerPlugin = require('start-server-webpack-plugin');
+const merge = require('webpack-merge');
+const webpackConfigBase = require('./webpack.config.server.base');
 
-module.exports = {
-  context: path.resolve(__dirname, '..'),
+const webpackConfig = {
   entry: [
+    // Insert code into application so it polls for updated modules.
     'webpack/hot/poll?1000',
-    './src/server/main.js',
   ],
-  watch: true,
-  target: 'node',
+
+  // Avoid bundling "node_modules".
+  // https://github.com/liady/webpack-node-externals
   externals: [nodeExternals({
     whitelist: ['webpack/hot/poll?1000'],
   })],
-  module: {
-    rules: [{
-      test: /\.js?$/,
-      use: 'babel-loader',
-      exclude: /node_modules/,
-    }],
-  },
+
+  // Tell webpack to watch for filesystem changes so it will compile changed
+  // files.
+  watch: true,
+
   plugins: [
-    new StartServerPlugin('server.js'),
-    new webpack.NamedModulesPlugin(),
+    // Start server automatically.
+    new StartServerPlugin('server.bundle.js'),
+
+    // Enable hot module replacement.
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        BUILD_TARGET: JSON.stringify('server'),
-      },
-    }),
   ],
+
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: 'server.js',
+    path: path.resolve(__dirname, '../.build'),
+    filename: 'server.bundle.js',
   },
 };
+
+const merged = merge(webpackConfigBase, webpackConfig);
+
+module.exports = merged;
