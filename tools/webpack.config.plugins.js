@@ -3,36 +3,39 @@ const webpack = require('webpack');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = ({ production, target }) => {
-  const plugins = [
-    // Prints more readable module names in the browser console on HMR updates.
-    // https://webpack.js.org/guides/hmr-react/
-    new webpack.NamedModulesPlugin(),
+const commonPlugins = (production, target) => [
+  // Prints more readable module names in the browser console on HMR updates.
+  // https://webpack.js.org/guides/hmr-react/
+  new webpack.NamedModulesPlugin(),
 
-    // Do not emit compiled assets that include errors.
-    new webpack.NoEmitOnErrorsPlugin(),
+  // Do not emit compiled assets that include errors.
+  new webpack.NoEmitOnErrorsPlugin(),
 
-    // Make build environment easily discoverable.
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(production ? 'production' : 'development'),
-        BUILD_TARGET: JSON.stringify(target),
-      },
-    }),
-  ];
+  // Make build environment easily discoverable.
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(production ? 'production' : 'development'),
+      BUILD_TARGET: JSON.stringify(target),
+    },
+  }),
+];
 
-  if (!production && target === 'node') {
-    plugins.push(
+const plugins = {
+  node: {
+    development: [
       // Start server automatically.
       new StartServerPlugin('server.bundle.js'),
 
       // Enable hot module replacement.
       new webpack.HotModuleReplacementPlugin(),
-    );
-  }
+    ],
 
-  if (!production && target === 'web') {
-    plugins.push(
+    production: [
+    ],
+  },
+
+  web: {
+    development: [
       // Enable HMR globally.
       // https://webpack.js.org/guides/hmr-react/
       new webpack.HotModuleReplacementPlugin(),
@@ -51,11 +54,9 @@ module.exports = ({ production, target }) => {
         template: path.resolve(__dirname, '../index.html'),
         inject: true,
       }),
-    );
-  }
+    ],
 
-  if (production && target === 'web') {
-    plugins.push(
+    production: [
       new webpack.optimize.UglifyJsPlugin({
         warnings: false,
       }),
@@ -98,8 +99,11 @@ module.exports = ({ production, target }) => {
         name: 'manifest',
         chunks: ['vendor'],
       }),
-    );
-  }
-
-  return plugins;
+    ],
+  },
 };
+
+module.exports = ({ production, target }) => [
+  ...commonPlugins({ production, target }),
+  ...plugins[target][production ? 'production' : 'development'],
+];

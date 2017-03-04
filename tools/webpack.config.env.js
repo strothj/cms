@@ -1,7 +1,7 @@
 /**
  * @returns {{ production: boolean, target: ('node'|'web')}}
  */
-function validateWebpackEnvironmentVariables({ production = false, target }) {
+module.exports = ({ production, target }) => {
   if (production && typeof production !== 'boolean') {
     throw new Error('Expected production to be true or false.');
   }
@@ -11,6 +11,4 @@ function validateWebpackEnvironmentVariables({ production = false, target }) {
   }
 
   return { production, target };
-}
-
-module.exports = validateWebpackEnvironmentVariables;
+};
