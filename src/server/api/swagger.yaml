@@ -1,0 +1,63 @@
+swagger: '2.0'
+info:
+  title: Node Content Management System
+  description: API for Node Content Management System
+  version: 1.0.0
+host: localhost:3000
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /users:
+    x-swagger-router-controller: Users
+    get:
+      description: Returns a list of users
+      parameters:
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/lastIdParam'
+      responses:
+        200:
+          description: List of users
+          schema:
+            type: object
+            properties:
+              users:
+                $ref: '#/definitions/userList'
+definitions:
+  user:
+    title: User account
+    type: object
+    properties:
+      username:
+        type: string
+      fullName:
+        type: string
+      email:
+        type: string
+        format: email
+      role:
+        type: string
+      postCount:
+        type: integer
+  userList:
+    title: User list
+    type: array
+    items:
+      $ref: '#/definitions/user'
+parameters:
+  limitParam:
+    name: limit
+    in: query
+    description: Number of results to return per page
+    type: integer
+    default: 20
+    maximum: 50
+    minimum: 10
+  lastIdParam:
+    name: last_id
+    in: query
+    description: Exclude results preceeding `last_id` and `last_id` itself.
+    type: string
+    format: byte
