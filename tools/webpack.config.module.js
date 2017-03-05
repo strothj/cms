@@ -6,12 +6,12 @@ const path = require('path');
 // https://webpack.js.org/guides/hmr-react/
 // https://github.com/kriasoft/react-static-boilerplate/blob/master/tools/webpack.config.js#L21
 const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc')));
-const babelConfig = Object.assign({}, babelrc.babel, {
+const babelConfig = Object.assign({}, babelrc, {
   babelrc: false,
-  cacheDirectory: true,
+  cacheDirectory: true, // TODO: Set this to true only when HMR is enabled.
   presets: babelrc.presets.map((x) => {
     if (Array.isArray(x) && x[0] === 'env') {
-      x.modules = false; // eslint-disable-line no-param-reassign
+      x[1].modules = false; // eslint-disable-line no-param-reassign
     }
     return x;
   }),

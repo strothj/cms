@@ -10,5 +10,5 @@ module.exports = ({ production, target }) => {
     throw new Error('Expected target to equal "node" or "web".');
   }
 
-  return { production, target };
+  return { production: Boolean(production), target };
 };

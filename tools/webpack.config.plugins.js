@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const commonPlugins = (production, target) => [
+const commonPlugins = ({ production, target }) => [
   // Prints more readable module names in the browser console on HMR updates.
   // https://webpack.js.org/guides/hmr-react/
   new webpack.NamedModulesPlugin(),
@@ -23,6 +24,9 @@ const commonPlugins = (production, target) => [
 const plugins = {
   node: {
     development: [
+      // Remove old build files.
+      new CleanWebpackPlugin(['.tmp'], { root: path.resolve(__dirname, '..') }),
+
       // Start server automatically.
       new StartServerPlugin('server.bundle.js'),
 
@@ -40,14 +44,6 @@ const plugins = {
       // https://webpack.js.org/guides/hmr-react/
       new webpack.HotModuleReplacementPlugin(),
 
-      // Prints more readable module names in the browser console on HMR
-      // updates.
-      // https://webpack.js.org/guides/hmr-react/
-      new webpack.NamedModulesPlugin(),
-
-      // Do not emit compiled assets that include errors.
-      new webpack.NoEmitOnErrorsPlugin(),
-
       // https://github.com/jantimon/html-webpack-plugin
       new HtmlWebpackPlugin({
         filename: 'index.html',
@@ -57,6 +53,9 @@ const plugins = {
     ],
 
     production: [
+      // Remove old build files.
+      new CleanWebpackPlugin(['dashboard'], { root: path.resolve(__dirname, '../dist') }),
+
       new webpack.optimize.UglifyJsPlugin({
         warnings: false,
       }),

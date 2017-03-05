@@ -1,51 +1,34 @@
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+const webpackExternals = require('./webpack.config.externals');
 const webpackEnvironment = require('./webpack.config.env');
 const webpackEntry = require('./webpack.config.entry');
 const webpackPlugins = require('./webpack.config.plugins');
 const webpackModule = require('./webpack.config.module');
 const webpackOutput = require('./webpack.config.output');
 
-const externals = ({ production, target }) => {
-  if (target !== 'node') return null;
-  return [nodeExternals({
-    whitelist: production ? [] : ['webpack/hot/poll?1000'],
-  })];
-};
-
-module.exports = (env) => {
+module.exports = (env = {}) => {
   // Grabs "production" boolean and "target" ("node" or "web") from webpack
   // command line arguments.
   // ex: webpack --env.production --env.target=web
-  const { production, target } = webpackEnvironment(env);
+  env = webpackEnvironment(env); // eslint-disable-line no-param-reassign
 
   return {
-    // Use project root as base directory.
-    // https://webpack.js.org/configuration/entry-context/#context
     context: path.resolve(__dirname, '..'),
 
-    // Create entry point list with optional hot module replacement and babel
-    // polyfill.
-    // https://webpack.js.org/configuration/entry-context/#entry
-    entry: webpackEntry({ production, target }),
+    entry: webpackEntry(env),
 
-    // Avoid bundling "node_modules".
-    // https://github.com/liady/webpack-node-externals
-    externals: externals({ production, target }),
+    externals: webpackExternals(env),
 
-    // Tell webpack to watch for filesystem changes so it will compile changed
-    // files.
-    watch: !production && target === 'node',
+    watch: !env.production && env.target === 'node',
 
-    // Set compile target ("node" or "web").
-    // https://webpack.js.org/configuration/target/#target
-    target,
+    target: env.target,
 
-    // https://webpack.js.org/configuration/plugins/#plugins
-    plugins: webpackPlugins({ production, target }),
+    plugins: webpackPlugins(env),
 
-    module: webpackModule({ target }),
+    module: webpackModule(env),
 
-    output: webpackOutput({ production, target }),
+    output: webpackOutput(env),
+
+    resolve: { extensions: ['.js', '.jsx', '.json'] },
   };
 };

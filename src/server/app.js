@@ -2,9 +2,13 @@ import express from 'express';
 
 const app = express();
 
-app.get('/api', (req, res) => {
+function test() {
+  return Promise.resolve('I am a server route and can also be hot reloaded!');
+}
+
+app.get('/api', async (req, res) => {
   res.send({
-    message: 'I am a server route and can also be hot reloaded!',
+    message: await test(),
   });
 });
 

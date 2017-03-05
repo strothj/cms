@@ -28,4 +28,4 @@ const outputs = {
   },
 };
 
-module.exports = ({ production, target }) => outputs[target][production ? 'production' : 'web'];
+module.exports = ({ production, target }) => outputs[target][production ? 'production' : 'development'];

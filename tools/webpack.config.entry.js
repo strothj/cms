@@ -3,10 +3,15 @@ const entries = {
     development: [
       // Activate HMR.
       'webpack/hot/poll?1000',
+
+      'babel-polyfill',
       './src/server/main.js',
     ],
 
-    production: ['./src/server/main.js'],
+    production: [
+      'babel-polyfill',
+      './src/server/main.js',
+    ],
   },
 
   web: {
