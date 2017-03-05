@@ -11,6 +11,7 @@ produces:
   - application/json
 paths:
   /users:
+    x-swagger-router-controller: Users
     get:
       description: Returns a list of users
       parameters:

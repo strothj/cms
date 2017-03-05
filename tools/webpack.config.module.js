@@ -17,17 +17,34 @@ const babelConfig = Object.assign({}, babelrc, {
   }),
 });
 
-module.exports = ({ target }) => {
-  if (target === 'node') (() => {})();
+const commonModules = () => [
+  {
+    test: /\.jsx?$/,
+    loader: 'babel-loader',
+    options: babelConfig,
+    include: path.resolve(__dirname, '../src'),
+  },
+  {
+    test: /\.yaml$/,
+    include: path.resolve(__dirname, '../src'),
+    use: ['json-loader', 'yaml-loader'],
+  },
+];
 
-  return {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        options: babelConfig,
-        include: path.resolve(__dirname, '../src'),
-      },
-    ],
-  };
+const modules = {
+  node: {
+    development: [],
+    production: [],
+  },
+  web: {
+    development: [],
+    production: [],
+  },
 };
+
+module.exports = ({ production, target }) => ({
+  rules: [
+    ...commonModules({ production, target }),
+    ...modules[target][production ? 'production' : 'development'],
+  ],
+});
