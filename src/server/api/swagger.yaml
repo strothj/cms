@@ -13,18 +13,18 @@ paths:
   /users:
     x-swagger-router-controller: Users
     get:
-      description: Returns a list of users
+      description: |
+        Returns a list of users.  
+        If a response has been truncated, a `206 Partial Content` status will be
+        returned.
       parameters:
-        - $ref: '#/parameters/limitParam'
-        - $ref: '#/parameters/lastIdParam'
+        - $ref: '#/parameters/page'
+        - $ref: '#/parameters/per_page'
       responses:
         200:
-          description: List of users
-          schema:
-            type: object
-            properties:
-              users:
-                $ref: '#/definitions/userList'
+          $ref: '#/responses/userListResponse'
+        206:
+          $ref: '#/responses/userListResponse'
 definitions:
   user:
     title: User account
@@ -47,17 +47,28 @@ definitions:
     items:
       $ref: '#/definitions/user'
 parameters:
-  limitParam:
-    name: limit
+  page:
+    name: page
     in: query
-    description: Number of results to return per page
+    description: Result page to retrieve.
+    type: integer
+    default: 1
+    minimum: 1
+    maximum: 1000
+  per_page:
+    name: per_page
+    in: query
+    description: Number of items to return per page.
     type: integer
     default: 20
-    maximum: 50
-    minimum: 10
-  lastIdParam:
-    name: last_id
-    in: query
-    description: Exclude results preceeding `last_id` and `last_id` itself.
-    type: string
-    format: byte
+    minimum: 1
+    maximum: 100
+responses:
+  userListResponse:
+    description: List of users
+    schema:
+      $ref: '#/definitions/userList'
+    headers:
+      X-Total-Count:
+        description: Total number of users matching query.
+        type: number
