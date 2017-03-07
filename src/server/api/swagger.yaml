@@ -22,14 +22,16 @@ paths:
         - $ref: '#/parameters/per_page'
       responses:
         200:
-          $ref: '#/responses/userListResponse'
+          $ref: '#/responses/userList'
         206:
-          $ref: '#/responses/userListResponse'
+          $ref: '#/responses/userList'
 definitions:
   user:
     title: User account
     type: object
     properties:
+      _id:
+        type: string
       username:
         type: string
       fullName:
@@ -64,7 +66,7 @@ parameters:
     minimum: 1
     maximum: 100
 responses:
-  userListResponse:
+  userList:
     description: List of users
     schema:
       $ref: '#/definitions/userList'
