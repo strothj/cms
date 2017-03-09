@@ -5,6 +5,9 @@
   "repository": "git@github.com:strothj/cms.git",
   "author": "strothj <jason@jasons.io>",
   "license": "MIT",
+  "engines": {
+    "node": ">=6.10.0"
+  },
   "scripts": {
     "start": "node dist/server.bundle.js",
     "dev": "npm-run-all --parallel dev:server dev:client",
@@ -26,11 +29,11 @@
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
-    "babel-loader": "7.0.0-alpha.1",
+    "babel-loader": "7.0.0-alpha.3",
     "babel-preset-env": "^1.1.10",
     "babel-preset-react": "^6.23.0",
     "clean-webpack-plugin": "^0.1.15",
-    "eslint": "3.15.0",
+    "eslint": "^3.17.1",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
