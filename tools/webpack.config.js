@@ -23,6 +23,13 @@ module.exports = (env = {}) => {
 
     target: env.target,
 
+    // Prevent __dirname from always returning '/' instead of the real
+    // directory. Needed so server can locate assets.
+    node: (() => {
+      if (env.target === 'web') return undefined;
+      return { __dirname: false, __filename: false };
+    })(),
+
     plugins: webpackPlugins(env),
 
     module: webpackModule(env),

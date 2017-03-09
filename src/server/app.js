@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import swaggerTools from 'swagger-tools';
 import swaggerDoc from './api/swagger.yaml';
 
@@ -10,6 +11,10 @@ const swaggerOptions = {
 };
 
 const app = express();
+
+// Enable CORS requests during development to allow calls from Swagger
+// swagger documention.
+if (process.env.NODE_ENV === 'development') app.use(swaggerDoc.basePath, cors());
 
 swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
   app.use(middleware.swaggerMetadata());
