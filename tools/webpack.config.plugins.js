@@ -54,7 +54,7 @@ const plugins = {
 
     production: [
       // Remove old build files.
-      new CleanWebpackPlugin(['dashboard'], { root: path.resolve(__dirname, '../dist') }),
+      new CleanWebpackPlugin(['public'], { root: path.resolve(__dirname, '../dist') }),
 
       new webpack.optimize.UglifyJsPlugin({
         warnings: false,
@@ -64,7 +64,7 @@ const plugins = {
       // You can customize output by editing /index.html.
       // https://github.com/jantimon/html-webpack-plugin
       new HtmlWebpackPlugin({
-        filename: path.resolve(__dirname, '../dist/dashboard/index.html'),
+        filename: path.resolve(__dirname, '../dist/public/index.html'),
         template: path.resolve(__dirname, '../index.html'),
         inject: true,
         minify: {

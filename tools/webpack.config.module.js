@@ -25,6 +25,7 @@ const commonModules = () => [
     include: path.resolve(__dirname, '../src'),
   },
   {
+    // Used for loading Swagger api schema.
     test: /\.yaml$/,
     include: path.resolve(__dirname, '../src'),
     use: ['json-loader', 'yaml-loader'],

@@ -16,12 +16,12 @@ const outputs = {
 
   web: {
     development: {
-      path: path.resolve(__dirname, '../dist/dashboard'),
-      filename: 'dashboard.js',
+      path: path.resolve(__dirname, '../dist/public'),
+      filename: 'static/js/main.bundle.js',
     },
 
     production: {
-      path: path.resolve(__dirname, '../dist/dashboard'),
+      path: path.resolve(__dirname, '../dist/public'),
       filename: 'static/js/[name].[chunkhash].js',
       chunkFilename: 'static/js/[id].[chunkhash].js',
     },
