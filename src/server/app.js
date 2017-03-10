@@ -24,10 +24,9 @@ swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
   app.use(middleware.swaggerValidator());
   app.use(middleware.swaggerRouter(swaggerOptions));
   app.use(middleware.swaggerUi(swaggerOptions));
+
+  app.use('/static', staticMiddleware());
+  app.get('*', renderPage);
 });
-
-app.use('/static', staticMiddleware());
-
-app.get('*', renderPage);
 
 export default app;
