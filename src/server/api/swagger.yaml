@@ -10,6 +10,26 @@ consumes:
 produces:
   - application/json
 paths:
+  /site:
+    get:
+      description: |
+        Returns site setup status and meta information.  
+        If site setup is complete, a 200 status code is returned with site
+        information.  
+        If site has not been setup yet, a 404 status is returned.
+      operationId: siteGet
+      security: []
+      responses:
+        200:
+          description: Site meta information
+          schema:
+            title: Site meta
+            type: object
+            properties:
+              siteTitle:
+                type: string
+        404:
+          description: Site setup not complete
   /users:
     x-swagger-router-controller: Users
     get:
