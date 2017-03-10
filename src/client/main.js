@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import App from './App';
+import App from '../common/App';
 
 const el = document.getElementById('app');
 
@@ -23,5 +23,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Respond to code changes when hot module replacement is enabled.
 // module.hot is injected when in development mode.
 if (module.hot) {
-  module.hot.accept('./App', () => { render(App); });
+  module.hot.accept('../common/App', () => { render(App); });
 }

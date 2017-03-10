@@ -1,7 +1,9 @@
+import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import swaggerTools from 'swagger-tools';
 import swaggerDoc from './api/swagger.yaml';
+import renderPage from './renderPage';
 
 // swaggerRouter configuration
 const swaggerOptions = {
@@ -23,5 +25,9 @@ swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
   app.use(middleware.swaggerRouter(swaggerOptions));
   app.use(middleware.swaggerUi(swaggerOptions));
 });
+
+app.use('/static', express.static(path.resolve(__dirname, 'public/static')));
+
+app.get('*', renderPage);
 
 export default app;
