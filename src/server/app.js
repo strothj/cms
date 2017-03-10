@@ -1,8 +1,8 @@
-import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import swaggerTools from 'swagger-tools';
 import swaggerDoc from './api/swagger.yaml';
+import staticMiddleware from './staticMiddleware';
 import renderPage from './renderPage';
 
 // swaggerRouter configuration
@@ -26,7 +26,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
   app.use(middleware.swaggerUi(swaggerOptions));
 });
 
-app.use('/static', express.static(path.resolve(__dirname, 'public/static')));
+app.use('/static', staticMiddleware());
 
 app.get('*', renderPage);
 

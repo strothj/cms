@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import path from 'path';
 import fs from 'fs';
-import fetch from 'isomorphic-fetch';
+import http from 'http';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from '../common/App';
@@ -13,10 +13,17 @@ const appDivTemplate = '<div id="app">{{rendered}}</div>\n{{initialState}}';
 // return a template which can be used to inject the rendered React app.
 const fetchHtmlTemplate = (() => {
   if (process.env.NODE_ENV === 'development') {
-    return () => fetch('http://localhost:8080/index.html')
-      .then(res => res.text())
-      .then(res => res.replace(appDiv, appDivTemplate))
-      .catch(() => 'Client development server not running');
+    return () => new Promise((resolve) => {
+      const req = http.get('http://localhost:8080', (res) => {
+        let html = '';
+        res.on('data', (chunk) => { html += chunk; });
+        res.on('end', () => {
+          html = html.replace(appDiv, appDivTemplate);
+          resolve(html);
+        });
+      });
+      req.on('error', (e) => { resolve(`Client development server not running<br>${e}`); });
+    });
   }
 
   const html = fs.readFileSync(path.resolve(__dirname, 'public/index.html')).toString();
