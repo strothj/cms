@@ -4,7 +4,8 @@ import fs from 'fs';
 import http from 'http';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import App from '../common/App';
+import { match, RouterContext } from 'react-router';
+import routes from '../common/routes';
 
 const appDiv = /<div id="?app"?><\/div>/;
 const appDivTemplate = '<div id="app">{{rendered}}</div>\n{{initialState}}';
@@ -43,12 +44,23 @@ const renderFullPage = async (html, preloadedState) => { // eslint-disable-line 
 export default async (req, res) => {
   // const store = createStore ...
 
-  const html = renderToString(
-    <App />,
-  );
+  match({ routes, location: req.url }, async (error, redirectLocation, renderProps) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else if (redirectLocation) {
+      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      const html = renderToString(
+        <RouterContext {...renderProps} />,
+      );
 
-  // const preloadedState = store.getState() ...
+      // const preloadedState = store.getState() ...
+      const renderedPage = await renderFullPage(html, null);
 
-  const renderedPage = await renderFullPage(html, null);
-  res.send(renderedPage);
+      res.status(200).send(renderedPage);
+    } else {
+      // Add 404 client side route.
+      res.status(404).send('Not found');
+    }
+  });
 };
