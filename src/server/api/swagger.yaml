@@ -12,6 +12,8 @@ produces:
 paths:
   /site:
     get:
+      tags:
+        - site
       description: |
         Returns site setup status and meta information.  
         If site setup is complete, a 200 status code is returned with site
@@ -33,6 +35,7 @@ paths:
   /users:
     x-swagger-router-controller: Users
     get:
+      tags: ['user']
       description: |
         Returns the list of users. Returns 200 if the full listing of users was
         returned. 206 is returned if more user accounts are available.
@@ -45,6 +48,7 @@ paths:
         206:
           $ref: '#/responses/userList'
     post:
+      tags: ['user']
       description: Creates a new user account.
       parameters:
         - name: user
@@ -62,6 +66,7 @@ paths:
   /users/{id}:
     x-swagger-router-controller: Users
     put:
+      tags: ['user']
       description: Update a user account.
       parameters:
         - name: id

@@ -14,29 +14,29 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/SiteMeta', 'model/User'], factory);
+    define(['ApiClient', 'model/User'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/SiteMeta'), require('../model/User'));
+    module.exports = factory(require('../ApiClient'), require('../model/User'));
   } else {
     // Browser globals (root is window)
     if (!root.NodeContentManagementSystem) {
       root.NodeContentManagementSystem = {};
     }
-    root.NodeContentManagementSystem.DefaultApi = factory(root.NodeContentManagementSystem.ApiClient, root.NodeContentManagementSystem.SiteMeta, root.NodeContentManagementSystem.User);
+    root.NodeContentManagementSystem.UserApi = factory(root.NodeContentManagementSystem.ApiClient, root.NodeContentManagementSystem.User);
   }
-}(this, function(ApiClient, SiteMeta, User) {
+}(this, function(ApiClient, User) {
   'use strict';
 
   /**
-   * Default service.
-   * @module api/DefaultApi
+   * User service.
+   * @module api/UserApi
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new DefaultApi. 
-   * @alias module:api/DefaultApi
+   * Constructs a new UserApi. 
+   * @alias module:api/UserApi
    * @class
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
@@ -46,46 +46,8 @@
 
 
     /**
-     * Callback function to receive the result of the siteGet operation.
-     * @callback module:api/DefaultApi~siteGetCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/SiteMeta} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Returns site setup status and meta information.   If site setup is complete, a 200 status code is returned with site information.   If site has not been setup yet, a 404 status is returned. 
-     * @param {module:api/DefaultApi~siteGetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/SiteMeta}
-     */
-    this.siteGet = function(callback) {
-      var postBody = null;
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = [];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = SiteMeta;
-
-      return this.apiClient.callApi(
-        '/site', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
      * Callback function to receive the result of the usersGet operation.
-     * @callback module:api/DefaultApi~usersGetCallback
+     * @callback module:api/UserApi~usersGetCallback
      * @param {String} error Error message, if any.
      * @param {Array.<module:model/User>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -96,7 +58,7 @@
      * @param {Object} opts Optional parameters
      * @param {Number} opts.page Which page of results to return. (default to 0)
      * @param {Number} opts.perPage How many results per page to return. (default to 20)
-     * @param {module:api/DefaultApi~usersGetCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/UserApi~usersGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:model/User>}
      */
     this.usersGet = function(opts, callback) {
@@ -129,7 +91,7 @@
 
     /**
      * Callback function to receive the result of the usersIdPut operation.
-     * @callback module:api/DefaultApi~usersIdPutCallback
+     * @callback module:api/UserApi~usersIdPutCallback
      * @param {String} error Error message, if any.
      * @param {module:model/User} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -139,7 +101,7 @@
      * Update a user account.
      * @param {String} id 
      * @param {module:model/User} user 
-     * @param {module:api/DefaultApi~usersIdPutCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/UserApi~usersIdPutCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/User}
      */
     this.usersIdPut = function(id, user, callback) {
@@ -180,7 +142,7 @@
 
     /**
      * Callback function to receive the result of the usersPost operation.
-     * @callback module:api/DefaultApi~usersPostCallback
+     * @callback module:api/UserApi~usersPostCallback
      * @param {String} error Error message, if any.
      * @param {module:model/User} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -189,7 +151,7 @@
     /**
      * Creates a new user account.
      * @param {module:model/User} user 
-     * @param {module:api/DefaultApi~usersPostCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/UserApi~usersPostCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/User}
      */
     this.usersPost = function(user, callback) {
