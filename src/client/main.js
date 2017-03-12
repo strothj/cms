@@ -1,20 +1,28 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+import { AppContainer as HmrContainer } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import App from '../common/App';
+import { createStore } from '../common/store';
+
+/* eslint-disable no-underscore-dangle */
+const preloadedState = window.__PRELOADED_STATE__;
+delete window.__PRELOADED_STATE__;
+const store = createStore(preloadedState);
 
 const el = document.getElementById('app');
 
-const render = async (AppFactory) => {
-  const app = await AppFactory();
+const render = (Component) => {
   ReactDOM.render(
-    <AppContainer>
-      <Router>
-        {app}
-      </Router>
-    </AppContainer>,
+    <HmrContainer>
+      <Provider store={store}>
+        <Router>
+          <Component />
+        </Router>
+      </Provider>
+    </HmrContainer>,
     el,
   );
 };

@@ -36,6 +36,8 @@ module.exports = (env = {}) => {
 
     output: webpackOutput(env),
 
+    devtool: env.production ? 'source-map' : 'eval',
+
     resolve: { extensions: ['.js', '.jsx', '.json'] },
   };
 };

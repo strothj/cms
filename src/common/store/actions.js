@@ -1,6 +1,10 @@
 import NodeCms from 'node-cms';
 
-const siteApi = new NodeCms.SiteApi();
+// TODO: Determine API base path programmatically.
+const apiClient = new NodeCms.ApiClient();
+apiClient.basePath = 'http://localhost:3000/api/v1';
+if (process.env.NODE_ENV === 'development') () => {};
+const siteApi = new NodeCms.SiteApi(apiClient);
 
 export const SITE_META_SUCCESS = 'SITE_META_SUCCESS';
 export const siteMetaSuccess = meta => ({
