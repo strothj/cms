@@ -1,6 +1,7 @@
 import * as actions from './actions';
-import store from './store';
+import createStore from './createStore';
 
-export default store;
-
-export { actions };
+export {
+  actions,
+  createStore,
+};

@@ -19,6 +19,10 @@ const babelConfig = Object.assign({}, babelrc, {
 
 const commonModules = () => [
   {
+    test: /node-cms\/.*\.js$/,
+    use: 'imports-loader?define=>false',
+  },
+  {
     test: /\.jsx?$/,
     loader: 'babel-loader',
     options: babelConfig,

@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Node Content Management System
+  title: NodeCMS
   description: API for Node Content Management System
   version: 1.0.0
 host: localhost:3000
@@ -28,6 +28,8 @@ paths:
             title: Site meta
             type: object
             properties:
+              setupRequired:
+                type: boolean
               siteTitle:
                 type: string
         404:
