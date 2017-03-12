@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore } from '../common/store';
 import App from '../common/App';
 import fetchHtmlTemplate from './fetchHtmlTemplate';
+import fetchSiteMetaInfo from './fetchSiteMetaInfo';
 
 // Replace template placeholders with rendered React app.
 const renderFullPage = async (html, preloadedState) => { // eslint-disable-line no-unused-vars
@@ -19,7 +20,8 @@ const renderFullPage = async (html, preloadedState) => { // eslint-disable-line 
 };
 
 export default async (req, res) => {
-  const store = createStore();
+  const siteMeta = await fetchSiteMetaInfo();
+  const store = createStore({ siteMeta });
   const context = {};
 
   const html = renderToString(

@@ -2,15 +2,19 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducer';
 
-export default preloadedState => createStore(
-  reducer,
+export default (preloadedState) => {
+  console.log(preloadedState);
+  const storeParams = [reducer];
+  if (preloadedState) storeParams.push(preloadedState);
 
-  // Redux Devtools Extension
-  // eslint-disable-next-line no-underscore-dangle
-  global.window && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  return createStore(
+    ...storeParams,
 
-  // Async middleware
-  applyMiddleware(thunk),
+    // Redux Devtools Extension
+    // eslint-disable-next-line no-underscore-dangle
+    global.window && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 
-  preloadedState,
-);
+    // Async middleware
+    applyMiddleware(thunk),
+  );
+};
