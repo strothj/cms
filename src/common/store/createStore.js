@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import reducer from './reducer';
 
 export default (preloadedState) => {
-  console.log(preloadedState);
   const storeParams = [reducer];
   if (preloadedState) storeParams.push(preloadedState);
 

@@ -9,8 +9,10 @@ export default () => {
     return (req, res, next) => { // eslint-disable-line no-unused-vars
       const preq = http.get(`http://localhost:8080/static${req.url}`, (pres) => {
         let data = '';
+        const contentType = pres.headers['content-type'];
         pres.on('data', (chunk) => { data += chunk; });
         pres.on('end', () => {
+          res.setHeader('content-type', contentType);
           res.send(data);
         });
       });

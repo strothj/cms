@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Webpack understands the native import syntax and uses it for tree shaking.
 // Disable Babel transformation of "import" statements.
@@ -17,39 +19,40 @@ const babelConfig = Object.assign({}, babelrc, {
   }),
 });
 
-const commonModules = () => [
-  {
-    test: /node-cms\/.*\.js$/,
-    use: 'imports-loader?define=>false',
-  },
-  {
-    test: /\.jsx?$/,
-    loader: 'babel-loader',
-    options: babelConfig,
-    include: path.resolve(__dirname, '../src'),
-  },
-  {
-    // Used for loading Swagger api schema.
-    test: /\.yaml$/,
-    include: path.resolve(__dirname, '../src'),
-    use: ['json-loader', 'yaml-loader'],
-  },
-];
-
-const modules = {
-  node: {
-    development: [],
-    production: [],
-  },
-  web: {
-    development: [],
-    production: [],
-  },
-};
-
-module.exports = ({ production, target }) => ({
+module.exports = () => ({
   rules: [
-    ...commonModules({ production, target }),
-    ...modules[target][production ? 'production' : 'development'],
+    {
+      // Resolves an issue where Webpack does not correctly load the Swagger
+      // generated api client.
+      test: /node-cms\/.*\.js$/,
+      use: 'imports-loader?define=>false',
+    },
+    {
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      options: babelConfig,
+      include: path.resolve(__dirname, '../src'),
+    },
+    {
+      // Used for loading Swagger api schema.
+      test: /\.yaml$/,
+      include: path.resolve(__dirname, '../src'),
+      use: ['json-loader', 'yaml-loader'],
+    },
+    {
+      // Extract CSS to its own file.
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        use: [
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [autoprefixer],
+            },
+          },
+        ],
+      }),
+    },
   ],
 });
