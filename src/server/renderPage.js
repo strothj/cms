@@ -3,10 +3,9 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from '../common/store';
+import { createStore, actions } from '../common/store';
 import App from '../common/App';
 import fetchHtmlTemplate from './fetchHtmlTemplate';
-import fetchSiteMetaInfo from './fetchSiteMetaInfo';
 
 // Replace template placeholders with rendered React app.
 const renderFullPage = async (html, preloadedState) => { // eslint-disable-line no-unused-vars
@@ -20,8 +19,8 @@ const renderFullPage = async (html, preloadedState) => { // eslint-disable-line 
 };
 
 export default async (req, res) => {
-  const siteMeta = await fetchSiteMetaInfo();
-  const store = createStore({ siteMeta });
+  const store = createStore();
+  await store.dispatch(actions.fetchSiteMeta());
   const context = {};
 
   const html = renderToString(
