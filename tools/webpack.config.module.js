@@ -22,6 +22,12 @@ const babelConfig = Object.assign({}, babelrc, {
 module.exports = () => ({
   rules: [
     {
+      enforce: 'pre',
+      test: /\.jsx?$/,
+      loader: 'eslint-loader',
+      include: path.resolve(__dirname, '../src'),
+    },
+    {
       // Resolves an issue where Webpack does not correctly load the Swagger
       // generated api client.
       test: /node-cms\/.*\.js$/,
