@@ -1,14 +1,13 @@
-import http from 'http';
-import app from './app';
+import { app, createServer } from './http';
 
-const server = http.createServer(app);
+const server = createServer(app);
 let currentApp = app;
 server.listen(3000);
 
 // Respond to code changes when hot module replacement is enabled.
 // module.hot is injected when in development mode.
 if (module.hot) {
-  module.hot.accept('./app', () => {
+  module.hot.accept('./http', () => {
     server.removeListener('request', currentApp);
     server.on('request', app);
     currentApp = app;

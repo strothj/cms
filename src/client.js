@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer as HmrContainer } from 'react-hot-loader';
+import { AppContainer as HotReloadContainer } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import App from '../common/App';
-import { createStore } from '../common/store';
+import App from './App';
+import { createStore } from './store';
 
 /* eslint-disable no-underscore-dangle */
 const preloadedState = window.__PRELOADED_STATE__;
@@ -16,13 +16,13 @@ const el = document.getElementById('app');
 
 const render = (Component) => {
   ReactDOM.render(
-    <HmrContainer>
+    <HotReloadContainer>
       <Provider store={store}>
         <Router>
           <Component />
         </Router>
       </Provider>
-    </HmrContainer>,
+    </HotReloadContainer>,
     el,
   );
 };
@@ -34,5 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Respond to code changes when hot module replacement is enabled.
 // module.hot is injected when in development mode.
 if (module.hot) {
-  module.hot.accept('../common/App', () => { render(App); });
+  module.hot.accept('./App', () => { render(App); });
 }

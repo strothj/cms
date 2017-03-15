@@ -3,8 +3,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, actions } from '../common/store';
-import App from '../common/App';
+import { createStore, actions } from '../store';
+import App from '../App';
 import fetchHtmlTemplate from './fetchHtmlTemplate';
 
 // Replace template placeholders with rendered React app.
