@@ -30,7 +30,8 @@ module.exports = () => ({
     {
       // Resolves an issue where Webpack does not correctly load the Swagger
       // generated api client.
-      test: /node-cms\/.*\.js$/,
+      test: /\.js$/,
+      include: path.resolve(__dirname, '../node_modules/node-cms'),
       use: 'imports-loader?define=>false',
     },
     {
