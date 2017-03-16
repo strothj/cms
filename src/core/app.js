@@ -2,6 +2,7 @@ import express from 'express';
 import swaggerMiddleware from './swaggerMiddleware';
 import staticMiddleware from './staticMiddleware';
 import renderPage from './renderPage';
+// import config from './config';
 
 const app = express();
 
