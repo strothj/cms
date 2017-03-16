@@ -1,7 +1,11 @@
 import { createServer } from 'http';
 import app from './app';
+import config from './config';
+import dbConnect from './database';
 
 export {
-  createServer,
   app,
+  config,
+  createServer,
+  dbConnect,
 };
