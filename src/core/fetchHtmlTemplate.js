@@ -22,7 +22,10 @@ const fetchHtmlTemplate = (() => {
     });
   }
 
-  const html = fs.readFileSync(path.resolve(__dirname, 'public/index.html')).toString();
+  const testTemplatePath = path.resolve(__dirname, '../../index.html');
+  const productionTemplatePath = path.resolve(__dirname, 'public/index.html');
+  const templatePath = process.env.NODE_ENV === 'test' ? testTemplatePath : productionTemplatePath;
+  const html = fs.readFileSync(templatePath).toString();
   const htmlTemplate = html.replace(appDiv, appDivTemplate);
   return () => Promise.resolve(htmlTemplate);
 })();
