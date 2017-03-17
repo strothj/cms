@@ -14,34 +14,41 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    min: 6,
-    max: 100,
+    minlength: 6,
+    maxlength: 100,
+  },
+  password: {
+    type: String,
+    required: true,
+    // bcrypt hash length
+    minlength: 60,
+    maxlength: 60,
   },
   displayName: {
     type: String,
     required: true,
-    min: 2,
+    minlength: 2,
     // Needs to fit first and last names with comma and space
-    max: 102,
+    maxlength: 102,
   },
   name: {
     firstName: {
       type: String,
-      min: 2,
-      max: 50,
+      minlength: 2,
+      maxlength: 50,
       required: requireIfNameSet,
     },
     lastName: {
       type: String,
-      min: 2,
-      max: 50,
+      minlength: 2,
+      maxlength: 50,
       required: requireIfNameSet,
     },
   },
   email: {
     type: String,
     required: true,
-    max: 100,
+    maxlength: 100,
     lowercase: true,
   },
   role: {
@@ -56,9 +63,10 @@ userSchema.set('toJSON', {
   transform: (doc, ret, options) => {
     delete ret._id;
     delete ret.__v;
+    delete ret.password;
   },
   /* eslint-enable no-underscore-dangle, no-param-reassign, no-unused-vars */
-  // Display Mongoose
+  // Display Mongoose 'id' field.
   virtuals: true,
 });
 

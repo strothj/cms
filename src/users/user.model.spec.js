@@ -12,6 +12,7 @@ const user = params => ({
   },
   email: 'bob@example.com',
   role: 'admin',
+  password: 'a'.repeat(60),
   ...params,
 });
 
