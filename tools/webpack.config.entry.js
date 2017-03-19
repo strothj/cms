@@ -5,12 +5,12 @@ const entries = {
       'webpack/hot/poll?1000',
 
       'babel-polyfill',
-      './src/server.js',
+      './src/server/main.js',
     ],
 
     production: [
       'babel-polyfill',
-      './src/server.js',
+      './src/server/main.js',
     ],
   },
 
@@ -32,12 +32,12 @@ const entries = {
       // https://webpack.js.org/guides/hmr-react/
       'webpack/hot/only-dev-server',
 
-      './src/client.js',
+      './src/client/main.js',
     ],
 
     production: [
       'babel-polyfill',
-      './src/client.js',
+      './src/client/main.js',
     ],
   },
 };

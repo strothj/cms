@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import { AppContainer as HotReloadContainer } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import App from './App';
-import { createStore } from './store';
+import App from '../shared/App';
+import { createStore } from '../shared/store';
 
 /* eslint-disable no-underscore-dangle */
 const preloadedState = window.__PRELOADED_STATE__;
@@ -34,5 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Respond to code changes when hot module replacement is enabled.
 // module.hot is injected when in development mode.
 if (module.hot) {
-  module.hot.accept('./App', () => { render(App); });
+  module.hot.accept('../shared/App', () => { render(App); });
 }
