@@ -2,7 +2,8 @@ import { expect } from 'chai';
 import { dbConnect } from '../core';
 import User from './user.model';
 
-const user = params => ({
+// eslint-disable-next-line import/prefer-default-export
+export const user = params => ({
   provider: 'local',
   username: 'awesomeUser',
   displayName: 'awesomeUser',
@@ -69,5 +70,16 @@ describe('User model', () => {
     await User.create(u);
     u = await User.findOne();
     expect(u.email).to.equal('bob@example.com');
+  });
+
+  it('returns error when attempting to use an existing username', async () => {
+    let err;
+    try {
+      await User.create(user());
+      await User.create(user());
+    } catch (e) {
+      err = e;
+    }
+    expect(err).to.exist;
   });
 });

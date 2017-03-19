@@ -9,6 +9,9 @@
     "react"
   ],
   "plugins": [
+    ["babel-plugin-transform-builtin-extend", {
+      "globals": ["Error"]
+    }],
     "react-hot-loader/babel"
   ]
 }

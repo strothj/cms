@@ -16,6 +16,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 6,
     maxlength: 100,
+    unique: true,
   },
   password: {
     type: String,
@@ -27,20 +28,20 @@ const userSchema = new Schema({
   displayName: {
     type: String,
     required: true,
-    minlength: 2,
+    minlength: 1,
     // Needs to fit first and last names with comma and space
     maxlength: 102,
   },
   name: {
     firstName: {
       type: String,
-      minlength: 2,
+      minlength: 1,
       maxlength: 50,
       required: requireIfNameSet,
     },
     lastName: {
       type: String,
-      minlength: 2,
+      minlength: 1,
       maxlength: 50,
       required: requireIfNameSet,
     },
@@ -50,6 +51,7 @@ const userSchema = new Schema({
     required: true,
     maxlength: 100,
     lowercase: true,
+    unique: true,
   },
   role: {
     type: String,
