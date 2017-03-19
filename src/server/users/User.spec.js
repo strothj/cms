@@ -37,24 +37,18 @@ describe('User model', () => {
       .then(u => expect(Object.keys(u)).to.have.members(expectedFields));
   });
 
-  it('it returns error is only one of the "name" fields are provided', () => {
-    const missingFirstName = () => {
-      const user = new User(userParam({ name: { lastName: 'Anderson' } }));
+  it('it returns error if only one of the "name" fields are provided', () => {
+    let tests = [
+      ['rejected', { name: { lastName: 'Anderson' } }],
+      ['rejected', { name: { firstName: 'Bob' } }],
+      ['fulfilled', { name: undefined }],
+      ['fulfilled', { name: { firstName: 'Bob', lastName: 'Anderson' } }],
+    ];
+    tests = tests.map(t => expect((() => {
+      const user = new User(userParam(t[1] /* { name: ... } */));
       return user.save();
-    };
-    const missingLastName = () => {
-      const user = new User(userParam({ name: { firstName: 'Bob' } }));
-      return user.save();
-    };
-    const missingOptionalNameField = () => {
-      const user = new User(userParam({ name: undefined }));
-      return user.save();
-    };
-    return Promise.all([
-      expect(missingFirstName()).to.be.rejected,
-      expect(missingLastName()).to.be.rejected,
-      expect(missingOptionalNameField()).to.be.fulfilled,
-    ]);
+    })()).to.be[t[0]] /* rejected/fulfilled */);
+    return Promise.all(tests);
   });
 
   it('email address is lowercased', () => {

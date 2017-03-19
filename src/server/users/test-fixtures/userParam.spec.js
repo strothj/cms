@@ -2,7 +2,9 @@ import faker from 'faker';
 
 export default params => ({
   provider: 'local',
-  username: faker.internet.userName(),
+  // Using alphaNumeric due to faker.internet.userName sometimes returning
+  // usernames that are shorter than the minimum allowed by the schema.
+  username: faker.random.alphaNumeric(10),
   displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
   name: {
     firstName: faker.name.firstName(),
