@@ -5,7 +5,7 @@ function requireIfNameSet() {
   return this.name.firstName || this.name.lastName;
 }
 
-const userSchema = new Schema({
+const schema = new Schema({
   provider: {
     type: String,
     required: true,
@@ -60,7 +60,7 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.set('toJSON', {
+schema.set('toJSON', {
   /* eslint-disable no-underscore-dangle, no-param-reassign, no-unused-vars */
   transform: (doc, ret, options) => {
     delete ret._id;
@@ -72,6 +72,6 @@ userSchema.set('toJSON', {
   virtuals: true,
 });
 
-const userModel = mongoose.model('User', userSchema, 'users');
+const User = mongoose.model('User', schema, 'users');
 
-export default userModel;
+export default User;

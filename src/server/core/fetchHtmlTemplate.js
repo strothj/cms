@@ -22,7 +22,7 @@ const fetchHtmlTemplate = (() => {
     });
   }
 
-  const testTemplatePath = path.resolve(__dirname, '../../index.html');
+  const testTemplatePath = path.resolve(__dirname, '../../../index.html');
   const productionTemplatePath = path.resolve(__dirname, 'public/index.html');
   const templatePath = process.env.NODE_ENV === 'test' ? testTemplatePath : productionTemplatePath;
   const html = fs.readFileSync(templatePath).toString();

@@ -1,5 +1,5 @@
 import { ExtendableError } from '../core';
-import User from './user.model';
+import User from './User';
 
 export class SetupError extends ExtendableError {}
 
