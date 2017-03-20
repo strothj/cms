@@ -4,7 +4,7 @@ import chaiAsPromised from 'chai-as-promised';
 import { dbConnect } from '../core';
 import User from './User';
 import userParam from './test-fixtures/userParam.spec';
-import * as userService from './userService';
+import * as UserService from './UserService';
 
 chai.use(chaiAsPromised);
 
@@ -14,7 +14,7 @@ describe('User service', () => {
 
   describe('create', () => {
     const createUser = (authenticatedUser, newUserParam) => (
-      userService.create(authenticatedUser, { user: newUserParam })
+      UserService.create(authenticatedUser, { user: newUserParam })
     );
 
     describe('while server not setup', () => {
@@ -23,8 +23,8 @@ describe('User service', () => {
         const createSubscriber = createUser(null, userParam({ role: 'subscriber' }));
 
         return Promise.all([
-          expect(createEditor).to.be.rejectedWith(userService.SetupError),
-          expect(createSubscriber).to.be.rejectedWith(userService.SetupError),
+          expect(createEditor).to.be.rejectedWith(UserService.SetupError),
+          expect(createSubscriber).to.be.rejectedWith(UserService.SetupError),
         ]);
       });
 
@@ -45,8 +45,8 @@ describe('User service', () => {
         const createEditor = createUser(null, userParam({ role: 'editor' }));
 
         return Promise.all([
-          expect(createAdmin).to.be.rejectedWith(userService.PrivilegeError),
-          expect(createEditor).to.be.rejectedWith(userService.PrivilegeError),
+          expect(createAdmin).to.be.rejectedWith(UserService.PrivilegeError),
+          expect(createEditor).to.be.rejectedWith(UserService.PrivilegeError),
         ]);
       });
 
@@ -71,13 +71,13 @@ describe('User service', () => {
   describe('findOne', () => {
     it('returns existing user', () => {
       const createdUser = User.create(userParam());
-      const foundUser = createdUser.then(u => userService.findOne(null, { id: u._id }));
+      const foundUser = createdUser.then(u => UserService.findOne(null, { id: u._id }));
 
       return expect(foundUser).to.eventually.exist;
     });
 
     it('returns null if user doesn\'t exist', () => {
-      const nonexistantUser = userService.findOne(null, { id: 'a'.repeat(24) });
+      const nonexistantUser = UserService.findOne(null, { id: 'a'.repeat(24) });
 
       return expect(nonexistantUser).to.eventually.equal(null);
     });
