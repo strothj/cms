@@ -2,6 +2,7 @@ import { ExtendableError } from '../core';
 import User from './User';
 
 export class SetupError extends ExtendableError {}
+export class PrivilegeError extends ExtendableError {}
 
 /**
  * Creates a user account.
@@ -22,5 +23,11 @@ export const createUser = async (user, args) => {
     return User.create(args.user);
   }
 
-  return Promise.resolve();
+  // Only admin users can create users of type "admin" and "editor".
+  const isAdmin = Boolean(user && user.role === 'admin');
+  if (!isAdmin && (args.user.role === 'admin' || args.user.role === 'editor')) {
+    return Promise.reject(new PrivilegeError('Need admin privilege to creat that user type'));
+  }
+
+  return User.create(args.user);
 };
