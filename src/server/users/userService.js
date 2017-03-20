@@ -7,10 +7,12 @@ export class PrivilegeError extends ExtendableError {}
 /**
  * Creates a user account.
  *
- * @param {object} user Authenticated user or null if no user is authenticated.
- * @param {object} args Arguments passed in by Swagger middleware.
+ * @param {Object} [user=null] Authenticated user or null if no user is authenticated.
+ * @param {Object} args Arguments passed in by Swagger middleware.
+ * @param {Object} args.user User account to create.
+ * @returns {Promise<Object>} The created user.
  */
-export const createUser = async (user, args) => {
+export const create = async (user, args) => {
   const setupMode = (await User.count() === 0);
 
   // If the server doesn't have any users yet, allow the creation of an admin
@@ -31,3 +33,14 @@ export const createUser = async (user, args) => {
 
   return User.create(args.user);
 };
+
+/**
+ * Returns the user specified by the supplied id.
+ *
+ * @param {object} user Authenticated user or null if no user is authenticated.
+ * @param {object} args Arguments passed in by Swagger middleware.
+ * @param {string} args.id The ID of the user to return.
+ * @returns {Promise<Object>} The requested user.
+ */
+export const findOne = async (user, args) => User.findOne({ _id: args.id });
+
