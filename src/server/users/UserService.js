@@ -37,10 +37,21 @@ export const create = async (user, args) => {
 /**
  * Returns the user specified by the supplied id.
  *
- * @param {object} user Authenticated user or null if no user is authenticated.
+ * @param {object} [user=null] Authenticated user or null if no user is authenticated.
  * @param {object} args Arguments passed in by Swagger middleware.
  * @param {string} args.id The ID of the user to return.
  * @returns {Promise<Object>} The requested user.
  */
 export const findOne = async (user, args) => User.findOne({ _id: args.id });
 
+/**
+ * Returns a list of users.
+ *
+ * @param {object} user Authenticated user or null if no user is authenticated.
+ * @param {object} args Arguments passed in by Swagger middleware.
+ * @param {args.page} [number] Which page of results to return.
+ * @param {args.per_page} [number] How many results per page to return.
+ */
+export const find = async (user, args) => {
+
+};
