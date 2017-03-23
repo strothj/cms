@@ -7,6 +7,7 @@ import Index from './index';
 describe('Page <index />', () => {
   it('renders the text "Hello world!', () => {
     const wrapper = shallow(<Index />);
-    expect(wrapper.props().children).to.equal('Hello world!');
+    const message = wrapper.find('span').props().children;
+    expect(message).to.equal('Hello world!');
   });
 });

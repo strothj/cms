@@ -7,6 +7,6 @@ export default () => (
         color: blue;
       }
     `}</style>
-    Hello world!
+    <span>Hello world!</span>
   </div>
 );

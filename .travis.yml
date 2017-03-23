@@ -1,0 +1,21 @@
+language: node_js
+node_js: '6'
+services:
+  - mongodb
+addons:
+  apt:
+    sources:
+      - mongodb-3.2-precise
+    packages:
+      - mongodb-org-server
+script:
+  - yarn lint
+  - yarn test
+  - yarn build
+deploy:
+  provider: heroku
+  api_key:
+    secure: DOAqsAxF1m6kpOFwys5g8dcqK9GS8PMnWb/i+j8O4gd7JTqCoH/TUOezHhLjkyaJS65FDP40+ZwaTVxK0egZEaEYJCAtfxK8VO0cizBknxjQa72Gzu3LG0Kck8O6CuMHxPM4BbEBzLOtbG6KTQU/PXXD5Hxpa/R78StFjlehICiTMfzPj0c3zGWNgSkTBXIRptXg4pxqFBkvpMm+vRwjBawkh2QJfiHdvIGMd3GLN9x7Wg1mNOpbSL1PNk4IeZvbST848YQYNxGDDJ2ydTxUphvfLq+dwg8Pc6E2523spatWygQ90YQtFw7Gzz6I2HM52GaenL/yOzfQcISIoaVVCVzbrtWO82qM0M6YCG6bsUW0lQlqpOVXQ0qvBYbU/URK3CszeFwA/iOYnBooxsXMcemw4tWKSL71xJHh299f+SUMA1w1tRR6H8KaQprbe04ZIibliFtXyMjKtyDJn7p0s4MH/WPTFAbPKFuhUItOLVowtI4NagwZrPgvs/bPNxuK2Bp8DmF/fVmRfsaOjdlUTnfcN/w7obvabMq4ZgeQtExF8xBFreyglvXySsiXkyjdzsERJAtg/SjQzq/LX98bbg+JN2yPq19N4SLf1/NRyFywDzyuxM2kwlfMtci59cDIycUALZTW3bHXc2mG34xjd8OdyT0ap1YcQhdIdhk7zX0=
+  app: mighty-shore-76384
+  on:
+    repo: strothj/neo-cms
