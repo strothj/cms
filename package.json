@@ -6,13 +6,23 @@
   "author": "strothj <jason@jasons.io>",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "node src/server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node src/server.js"
   },
   "dependencies": {
+    "express": "^4.15.2",
+    "glob": "*",
+    "glob-promise": "^3.1.0",
     "next": "beta",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0"
   }
 }
