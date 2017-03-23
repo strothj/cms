@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Webpack understands the native import syntax and uses it for tree shaking.
 // Disable Babel transformation of "import" statements.
@@ -17,34 +19,47 @@ const babelConfig = Object.assign({}, babelrc, {
   }),
 });
 
-const commonModules = () => [
-  {
-    test: /\.jsx?$/,
-    loader: 'babel-loader',
-    options: babelConfig,
-    include: path.resolve(__dirname, '../src'),
-  },
-  {
-    test: /\.yaml$/,
-    include: path.resolve(__dirname, '../src'),
-    use: ['json-loader', 'yaml-loader'],
-  },
-];
-
-const modules = {
-  node: {
-    development: [],
-    production: [],
-  },
-  web: {
-    development: [],
-    production: [],
-  },
-};
-
-module.exports = ({ production, target }) => ({
+module.exports = () => ({
   rules: [
-    ...commonModules({ production, target }),
-    ...modules[target][production ? 'production' : 'development'],
+    {
+      enforce: 'pre',
+      test: /\.jsx?$/,
+      loader: 'eslint-loader',
+      include: path.resolve(__dirname, '../src'),
+    },
+    {
+      // Resolves an issue where Webpack does not correctly load the Swagger
+      // generated api client.
+      test: /\.js$/,
+      include: path.resolve(__dirname, '../node_modules/node-cms'),
+      use: 'imports-loader?define=>false',
+    },
+    {
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      options: babelConfig,
+      include: path.resolve(__dirname, '../src'),
+    },
+    {
+      // Used for loading Swagger api schema.
+      test: /\.yaml$/,
+      include: path.resolve(__dirname, '../src'),
+      use: ['json-loader', 'yaml-loader'],
+    },
+    {
+      // Extract CSS to its own file.
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        use: [
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [autoprefixer],
+            },
+          },
+        ],
+      }),
+    },
   ],
 });

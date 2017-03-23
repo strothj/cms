@@ -5,9 +5,13 @@
         "browsers": ["last 2 versions"]
       }
     }],
+    "stage-2",
     "react"
   ],
   "plugins": [
+    ["babel-plugin-transform-builtin-extend", {
+      "globals": ["Error"]
+    }],
     "react-hot-loader/babel"
   ]
 }

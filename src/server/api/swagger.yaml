@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Node Content Management System
+  title: NodeCMS
   description: API for Node Content Management System
   version: 1.0.0
 host: localhost:3000
@@ -10,9 +10,77 @@ consumes:
 produces:
   - application/json
 paths:
+  /site/setup:
+    post:
+      tags:
+        - site
+      description: |
+        Performs site installation. Sets the `Site Title` and creates the admin
+        user account.
+      operationId: siteSetup
+      security: []
+      parameters:
+        - name: config
+          in: body
+          description: Site configuration
+          required: true
+          schema:
+            type: object
+            title: Site Configuration
+            required:
+              - siteTitle
+              - username
+              - password
+              - email
+            example:
+              siteTitle: Awesome site!
+              username: admin
+              password: strongPassword
+              email: admin@example.com
+            properties:
+              siteTitle:
+                type: string
+              username:
+                type: string
+              password:
+                type: string
+                format: password
+              email:
+                type: string
+                format: email
+              searchEngineVisibility:
+                type: boolean
+      responses:
+        200:
+          description: test
+  /site:
+    get:
+      tags:
+        - site
+      description: |
+        Returns site setup status and meta information.  
+        If site setup is complete, a 200 status code is returned with site
+        information.  
+        If site has not been setup yet, a 404 status is returned.
+      operationId: siteGet
+      security: []
+      responses:
+        200:
+          description: Site meta information
+          schema:
+            title: Site meta
+            type: object
+            properties:
+              setupRequired:
+                type: boolean
+              siteTitle:
+                type: string
+        404:
+          description: Site setup not complete
   /users:
     x-swagger-router-controller: Users
     get:
+      tags: ['user']
       description: |
         Returns the list of users. Returns 200 if the full listing of users was
         returned. 206 is returned if more user accounts are available.
@@ -25,6 +93,7 @@ paths:
         206:
           $ref: '#/responses/userList'
     post:
+      tags: ['user']
       description: Creates a new user account.
       parameters:
         - name: user
@@ -42,6 +111,7 @@ paths:
   /users/{id}:
     x-swagger-router-controller: Users
     put:
+      tags: ['user']
       description: Update a user account.
       parameters:
         - name: id

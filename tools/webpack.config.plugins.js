@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const commonPlugins = ({ production, target }) => [
   // Prints more readable module names in the browser console on HMR updates.
@@ -18,6 +19,12 @@ const commonPlugins = ({ production, target }) => [
       NODE_ENV: JSON.stringify(production ? 'production' : 'development'),
       BUILD_TARGET: JSON.stringify(target),
     },
+  }),
+
+  // Extract CSS to its own file.
+  new ExtractTextPlugin({
+    filename: 'static/css/[name].[contenthash].css',
+    disable: target === 'node',
   }),
 ];
 
@@ -54,7 +61,7 @@ const plugins = {
 
     production: [
       // Remove old build files.
-      new CleanWebpackPlugin(['dashboard'], { root: path.resolve(__dirname, '../dist') }),
+      new CleanWebpackPlugin(['public'], { root: path.resolve(__dirname, '../dist') }),
 
       new webpack.optimize.UglifyJsPlugin({
         warnings: false,
@@ -64,7 +71,7 @@ const plugins = {
       // You can customize output by editing /index.html.
       // https://github.com/jantimon/html-webpack-plugin
       new HtmlWebpackPlugin({
-        filename: path.resolve(__dirname, '../dist/dashboard/index.html'),
+        filename: path.resolve(__dirname, '../dist/public/index.html'),
         template: path.resolve(__dirname, '../index.html'),
         inject: true,
         minify: {

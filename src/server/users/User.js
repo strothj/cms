@@ -1,0 +1,77 @@
+import mongoose, { Schema } from 'mongoose';
+
+// If either a first name or last name is provided, then both are required.
+function requireIfNameSet() {
+  return this.name.firstName || this.name.lastName;
+}
+
+const schema = new Schema({
+  provider: {
+    type: String,
+    required: true,
+    enum: ['local'],
+  },
+  username: {
+    type: String,
+    required: true,
+    minlength: 6,
+    maxlength: 100,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    // bcrypt hash length
+    minlength: 60,
+    maxlength: 60,
+  },
+  displayName: {
+    type: String,
+    required: true,
+    minlength: 1,
+    // Needs to fit first and last names with comma and space
+    maxlength: 102,
+  },
+  name: {
+    firstName: {
+      type: String,
+      minlength: 1,
+      maxlength: 50,
+      required: requireIfNameSet,
+    },
+    lastName: {
+      type: String,
+      minlength: 1,
+      maxlength: 50,
+      required: requireIfNameSet,
+    },
+  },
+  email: {
+    type: String,
+    required: true,
+    maxlength: 100,
+    lowercase: true,
+    unique: true,
+  },
+  role: {
+    type: String,
+    required: true,
+    enum: ['admin', 'editor', 'subscriber'],
+  },
+});
+
+schema.set('toJSON', {
+  /* eslint-disable no-underscore-dangle, no-param-reassign, no-unused-vars */
+  transform: (doc, ret, options) => {
+    delete ret._id;
+    delete ret.__v;
+    delete ret.password;
+  },
+  /* eslint-enable no-underscore-dangle, no-param-reassign, no-unused-vars */
+  // Display Mongoose 'id' field.
+  virtuals: true,
+});
+
+const User = mongoose.model('User', schema, 'users');
+
+export default User;

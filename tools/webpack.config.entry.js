@@ -32,12 +32,12 @@ const entries = {
       // https://webpack.js.org/guides/hmr-react/
       'webpack/hot/only-dev-server',
 
-      './src/dashboard/main.js',
+      './src/client/main.js',
     ],
 
     production: [
       'babel-polyfill',
-      './src/dashboard/main.js',
+      './src/client/main.js',
     ],
   },
 };

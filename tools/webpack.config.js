@@ -26,7 +26,7 @@ module.exports = (env = {}) => {
     // Prevent __dirname from always returning '/' instead of the real
     // directory. Needed so server can locate assets.
     node: (() => {
-      if (env.target === 'web') return undefined;
+      if (env.target === 'web') return { fs: 'empty' };
       return { __dirname: false, __filename: false };
     })(),
 
@@ -35,6 +35,8 @@ module.exports = (env = {}) => {
     module: webpackModule(env),
 
     output: webpackOutput(env),
+
+    devtool: env.production ? 'source-map' : 'eval',
 
     resolve: { extensions: ['.js', '.jsx', '.json'] },
   };
