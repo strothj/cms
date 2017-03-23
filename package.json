@@ -1,0 +1,18 @@
+{
+  "name": "neo-cms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:strothj/neo-cms.git",
+  "author": "strothj <jason@jasons.io>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "beta",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
