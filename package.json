@@ -9,24 +9,32 @@
     "dev": "node src/server.js",
     "build": "next build",
     "start": "NODE_ENV=production node src/server.js",
-    "postinstall": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "lint": "eslint src/**/*.js pages/**/*.js",
+    "test": "mocha --opts mocha.opts"
   },
   "engines": {
     "node": "6.x"
   },
   "dependencies": {
+    "babel-preset-env": "^1.2.2",
     "express": "^4.15.2",
     "glob": "*",
     "glob-promise": "^3.1.0",
+    "ignore-loader": "^0.1.2",
     "next": "beta",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "enzyme": "^2.7.1",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.9.0"
+    "eslint-plugin-react": "^6.9.0",
+    "mocha": "^3.2.0",
+    "react-addons-test-utils": "^15.4.2"
   }
 }
