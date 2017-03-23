@@ -1,5 +1,4 @@
 node_modules/
-dist/
-.tmp/
 samples/
 yarn-error.log
+.next/
