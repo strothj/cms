@@ -8,16 +8,17 @@
   "scripts": {
     "dev": "node src/server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node src/server.js",
+    "start": "cross-env NODE_ENV=production node src/server.js",
     "heroku-postbuild": "npm run build",
     "lint": "eslint src/**/*.js pages/**/*.js",
-    "test": "mocha --opts mocha.opts"
+    "test": "cross-env NODE_ENV=test mocha --opts mocha.opts"
   },
   "engines": {
     "node": "6.x"
   },
   "dependencies": {
     "babel-preset-env": "^1.2.2",
+    "cross-env": "^3.2.4",
     "express": "^4.15.2",
     "glob": "*",
     "glob-promise": "^3.1.0",
