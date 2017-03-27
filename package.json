@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "cross-env NODE_ENV=production node src/server.js",
     "heroku-postbuild": "npm run build",
-    "lint": "eslint src/**/*.js pages/**/*.js",
+    "lint": "eslint \"src/**/*.js\" \"pages/**/*.js\"",
     "test": "cross-env NODE_ENV=test mocha --opts mocha.opts"
   },
   "engines": {
