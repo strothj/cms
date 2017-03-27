@@ -6,6 +6,9 @@ const db = {
     siteTitle: 'Awesome Blog',
     tagline: 'Just another blog',
   },
+  theme: {
+    headerImage: '/static/images/header-image.jpg',
+  },
 };
 const jsonRouter = jsonServer.router(db);
 const middlewares = jsonServer.defaults();

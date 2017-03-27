@@ -5,8 +5,12 @@ import PageFrame from '../src/components/PageFrame';
 
 class IndexPage extends Component {
   static async getInitialProps({ store }) {
+    console.log('IndexPage: getInitialProps'); // eslint-disable-line no-console
     store.dispatch(actions.setRouteName('index'));
-    await store.dispatch(actions.fetchSiteMeta());
+    await Promise.all([
+      store.dispatch(actions.fetchSiteMeta()),
+      store.dispatch(actions.fetchTheme()),
+    ]);
     return {};
   }
 
