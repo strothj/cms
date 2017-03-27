@@ -1,3 +1,3 @@
-import PageFrame from './PageFrame';
+import PageFrameContainer from './PageFrameContainer';
 
-export default PageFrame;
+export default PageFrameContainer;

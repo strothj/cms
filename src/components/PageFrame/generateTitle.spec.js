@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import generateTitle from './generateTitle';
 
-describe('PageFrame generateTitle', () => {
+describe('generateTitle', () => {
   it('returns page title from context', () => {
     const tests = [
       ['', {}],
