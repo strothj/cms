@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import withRedux from 'next-redux-wrapper';
 import { actions, makeStore } from '../src/store';
 import PageFrame from '../src/components/PageFrame';
+import HeaderSection from '../src/components/HeaderSection';
 
 class IndexPage extends Component {
   static async getInitialProps({ store }) {
+    // TODO: Prevent multiple unnecessary fetches when navigating between pages.
     console.log('IndexPage: getInitialProps'); // eslint-disable-line no-console
     store.dispatch(actions.setRouteName('index'));
     await Promise.all([
@@ -17,7 +19,8 @@ class IndexPage extends Component {
   render() {
     return (
       <PageFrame>
-        <span>Hello world!</span>
+        <HeaderSection />
+        <img src="https://placekitten.com/350/350" alt="placeholder" />
       </PageFrame>
     );
   }

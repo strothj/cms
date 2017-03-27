@@ -25,7 +25,9 @@ const PageFrame = (props) => {
   );
 };
 
-PageFrame.propTypes = { children: PropTypes.element };
+PageFrame.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
+};
 PageFrame.defaultProps = { children: null };
 
 export default PageFrame;
