@@ -2,8 +2,9 @@ const router = require('express').Router();
 const jsonServer = require('json-server');
 
 const db = {
-  userinfo: {
-    username: 'admin',
+  meta: {
+    siteTitle: 'Awesome Blog',
+    tagline: 'Just another blog',
   },
 };
 const jsonRouter = jsonServer.router(db);
