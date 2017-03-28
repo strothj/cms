@@ -1,5 +1,5 @@
 import { PropTypes } from 'react';
-import * as breakpoints from './breakpoints';
+import { breakpoints } from '../shared';
 
 const Wrapper = props => (
   <div className="wrapper">

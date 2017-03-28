@@ -1,7 +1,7 @@
-/* eslint-disable padded-blocks */
+/* eslint-disable padded-blocks, no-unused-vars */
+const path = require('path');
 
 module.exports = {
-  // eslint-disable-next-line no-unused-vars
   webpack: (config, { dev }) => {
 
     // Ignore unit tests

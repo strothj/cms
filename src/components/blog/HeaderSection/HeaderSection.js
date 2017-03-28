@@ -2,7 +2,7 @@ import { PropTypes } from 'react';
 // import Link from 'next/link';
 // import Link from '../Link';
 import Anchor from '../Anchor';
-import * as breakpoints from '../breakpoints';
+import { breakpoints } from '../../shared';
 import HeaderImage from '../HeaderImage';
 import Wrapper from '../Wrapper';
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import withRedux from 'next-redux-wrapper';
 import { actions, makeStore } from '../src/store';
-import PageFrame from '../src/components/PageFrame';
-import HeaderSection from '../src/components/HeaderSection';
+import { PageFrame } from '../src/components/shared';
+import { HeaderSection } from '../src/components/blog';
 
 class IndexPage extends Component {
   static async getInitialProps({ store }) {
