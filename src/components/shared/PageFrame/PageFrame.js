@@ -6,10 +6,14 @@ const PageFrame = (props) => {
   const title = generateTitle(props);
   const styles = `
     html { box-sizing: border-box; }
+
     *, *:before, *:after { box-sizing: inherit; }
+
     body {
       min-height: 100vh;
       margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
   `;
   const fonts = props.fonts.map(({ id, name }) =>
@@ -21,7 +25,7 @@ const PageFrame = (props) => {
   );
 
   return (
-    <div>
+    <div className="page-frame">
       <Head>
         <title>{title}</title>
         <style>{styles}</style>
