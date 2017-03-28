@@ -26,13 +26,13 @@ export const fetchSiteMeta = () => dispatch => apiClient.metaGet()
   });
   // TODO: Add error handling
 
-export const fetchThemeSuccess = ({ headerImage }) => ({
+export const fetchThemeSuccess = theme => ({
   type: FETCH_THEME_SUCCESS,
-  headerImage,
+  theme,
 });
 
 export const fetchTheme = () => dispatch => apiClient.themeGet()
-  .then(({ headerImage }) => {
-    dispatch(fetchThemeSuccess({ headerImage }));
+  .then((theme) => {
+    dispatch(fetchThemeSuccess(theme));
   });
   // TODO: Add error handling

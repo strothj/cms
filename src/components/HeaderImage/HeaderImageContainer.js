@@ -3,7 +3,7 @@ import HeaderImage from './HeaderImage';
 
 const mapStateToProps = ({
   theme: { headerImage },
-  app: { routeName },
+  routeName,
 }) => ({ headerImage, routeName });
 
 export default connect(mapStateToProps)(HeaderImage);

@@ -7,7 +7,12 @@ const db = {
     tagline: 'Just another blog',
   },
   theme: {
+    fonts: [
+      { id: 0, name: 'Roboto' },
+      { id: 1, name: 'Quicksand' },
+    ],
     headerImage: '/static/images/header-image.jpg',
+    headerFont: 'Quicksand',
   },
 };
 const jsonRouter = jsonServer.router(db);

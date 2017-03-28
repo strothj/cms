@@ -12,6 +12,13 @@ const PageFrame = (props) => {
       margin: 0;
     }
   `;
+  const fonts = props.fonts.map(({ id, name }) =>
+    <link
+      href={`https://fonts.googleapis.com/css?family=${name}`}
+      rel="stylesheet"
+      key={id}
+    />,
+  );
 
   return (
     <div>
@@ -19,6 +26,7 @@ const PageFrame = (props) => {
         <title>{title}</title>
         <style>{styles}</style>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {fonts}
       </Head>
       {props.children}
     </div>
@@ -27,6 +35,7 @@ const PageFrame = (props) => {
 
 PageFrame.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
+  fonts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 PageFrame.defaultProps = { children: null };
 

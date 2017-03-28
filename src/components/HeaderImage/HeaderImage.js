@@ -6,7 +6,7 @@ const HeaderImage = ({ headerImage, routeName }) => {
   return (
     <div className={classes}>
       <style jsx>{`
-        .header-image, .header-image img {
+        .header-image img {
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -15,6 +15,7 @@ const HeaderImage = ({ headerImage, routeName }) => {
 
         .header-image--fixed img {
           position: fixed;
+          top: 0;
         }
       `}</style>
       <img src={headerImage} alt="" />
