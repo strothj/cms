@@ -1,4 +1,7 @@
 import { PropTypes } from 'react';
+// import Link from 'next/link';
+// import Link from '../Link';
+import Anchor from '../Anchor';
 import * as breakpoints from '../breakpoints';
 import HeaderImage from '../HeaderImage';
 import Wrapper from '../Wrapper';
@@ -7,6 +10,7 @@ const HeaderSection = (props) => {
   const classes = props.large ? 'header-section--size-large' : '';
   const style = {
     fontFamily: props.font,
+    color: props.color,
   };
 
   return (
@@ -26,12 +30,19 @@ const HeaderSection = (props) => {
           content: "";
         }
 
-        h1, h2 { margin: 0; }
+        h1, p { margin: 0; }
+
+        h1 {
+          text-transform: uppercase;
+          font-size: 2.25rem;
+          font-weight: 800;
+        }
 
         div {
           position: absolute;
           bottom: 0;
           width: 100%;
+          padding-bottom: 48px;
         }
 
         @media (min-width: ${breakpoints.FOR_TABLETS_PORTRAIT_AND_UP}) {
@@ -43,8 +54,8 @@ const HeaderSection = (props) => {
       <HeaderImage />
       <div>
         <Wrapper>
-          <h1>{props.siteTitle}</h1>
-          <h2>{props.tagline}</h2>
+          <Anchor href="/"><h1>{props.siteTitle}</h1></Anchor>
+          <p>{props.tagline}</p>
         </Wrapper>
       </div>
     </header>
@@ -53,6 +64,7 @@ const HeaderSection = (props) => {
 
 HeaderSection.propTypes = {
   font: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
   siteTitle: PropTypes.string,
   tagline: PropTypes.string,
   large: PropTypes.bool,

@@ -13,6 +13,7 @@ const db = {
     ],
     headerImage: '/static/images/header-image.jpg',
     headerFont: 'Quicksand',
+    headerColor: '#fff',
   },
 };
 const jsonRouter = jsonServer.router(db);

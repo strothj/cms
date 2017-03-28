@@ -5,12 +5,13 @@ const mapStateToProps = ({
   routeName,
   siteTitle,
   tagline,
-  theme: { headerFont },
+  theme: { headerFont, headerColor },
 }) => ({
   large: routeName === 'index',
   siteTitle,
   tagline,
   font: headerFont,
+  color: headerColor,
 });
 
 export default connect(mapStateToProps)(HeaderSection);
