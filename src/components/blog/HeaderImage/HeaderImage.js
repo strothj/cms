@@ -4,8 +4,10 @@ const HeaderImage = ({ headerImage, routeName }) => {
   const classes = routeName === 'index' ? ['header-image header-image--fixed'] : ['header-image'];
 
   return (
-    <div className={classes}>
+    <figure className={classes}>
       <style jsx>{`
+        figure { margin: 0; }
+
         .header-image img {
           width: 100%;
           height: 100%;
@@ -19,7 +21,7 @@ const HeaderImage = ({ headerImage, routeName }) => {
         }
       `}</style>
       <img src={headerImage} alt="" />
-    </div>
+    </figure>
   );
 };
 

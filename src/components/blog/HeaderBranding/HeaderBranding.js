@@ -19,17 +19,19 @@ const HeaderBranding = (props) => {
   `;
 
   return (
-    <div className="header-branding" style={style}>
+    <section className="header-branding" style={style}>
       <style jsx>{`
-        div { padding-bottom: 24px; }
+        section { padding-bottom: 24px; }
+
         h1 { text-transform: uppercase; }
+
         a {
           border-bottom: none;
           transition: color .2s;
         }
 
         @media (min-width: ${breakpoints.FOR_TABLETS_PORTRAIT_AND_UP}) {
-          div { padding-bottom: 48px; }
+          section { padding-bottom: 48px; }
         }
       `}</style>
       <style>{blurColor}</style>
@@ -42,7 +44,7 @@ const HeaderBranding = (props) => {
         </h1>
         <p>{props.tagline}</p>
       </Wrapper>
-    </div>
+    </section>
   );
 };
 
