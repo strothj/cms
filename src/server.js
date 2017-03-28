@@ -8,7 +8,7 @@ const app = next({ dev });
 const handler = app.getRequestHandler(app);
 
 apiServer.prepare()
-.then(app.prepare())
+.then(() => app.prepare())
 .then(() => {
   const server = express();
 
