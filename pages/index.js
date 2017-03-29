@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import withRedux from 'next-redux-wrapper';
 import { actions, makeStore } from '../src/store';
 import { PageFrame } from '../src/components/shared';
-import { BlogWrapper, HeaderSection } from '../src/components/blog';
+import { BlogWrapper, ContentSection, HeaderSection } from '../src/components/blog';
 
 class IndexPage extends Component {
   static async getInitialProps({ store }) {
@@ -21,7 +21,7 @@ class IndexPage extends Component {
       <PageFrame>
         <BlogWrapper>
           <HeaderSection />
-          <img src="https://placekitten.com/250/350" alt="placeholder" />
+          <ContentSection />
         </BlogWrapper>
       </PageFrame>
     );

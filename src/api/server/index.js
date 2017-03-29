@@ -17,6 +17,18 @@ const db = {
     contentTitleColor: '#222',
     contentBackgroundColor: '#fff',
   },
+  posts: [
+    {
+      id: '1',
+      title: 'Aliquip commodo laboris elit',
+      permalink: 'aliquip-commodo',
+      featuredImage: 'https://placekitten.com/250/350',
+      content: `# Sunt Lorem ea do proident adipisicing mollit incididunt exercitation nisi officia in.
+
+      Tempor cupidatat eiusmod amet consequat do officia consectetur qui aliquip. Culpa aliquip velit magna officia amet labore. Amet culpa do aute adipisicing cupidatat elit irure.
+      `,
+    },
+  ],
 };
 const jsonRouter = jsonServer.router(db);
 const middlewares = jsonServer.defaults();

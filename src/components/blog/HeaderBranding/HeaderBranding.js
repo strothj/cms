@@ -23,7 +23,10 @@ const HeaderBranding = (props) => {
       <style jsx>{`
         section { padding-bottom: ${gutters(breakpoints.FOR_PHONES_ONLY, 2)}; }
 
-        h1 { text-transform: uppercase; }
+        h1 {
+          text-transform: uppercase;
+          font-size: 2rem;
+        }
 
         a {
           border-bottom: none;
@@ -32,6 +35,8 @@ const HeaderBranding = (props) => {
 
         @media ${breakpoints.FOR_TABLET} {
           section { padding-bottom: ${gutters(breakpoints.FOR_TABLET, 2)}; }
+
+          h1 { font-size: 3rem; }
         }
       `}</style>
       <style>{blurColor}</style>
