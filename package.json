@@ -8,25 +8,35 @@
   "scripts": {
     "dev": "node src/server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node src/server.js",
+    "start": "cross-env NODE_ENV=production node src/server.js",
     "heroku-postbuild": "npm run build",
-    "lint": "eslint src/**/*.js pages/**/*.js",
-    "test": "mocha --opts mocha.opts"
+    "lint": "eslint \"src/**/*.js\" \"pages/**/*.js\"",
+    "test": "cross-env NODE_ENV=test mocha --opts mocha.opts"
   },
   "engines": {
     "node": "6.x"
   },
   "dependencies": {
     "babel-preset-env": "^1.2.2",
+    "color": "^1.0.3",
+    "cross-env": "^3.2.4",
     "express": "^4.15.2",
     "glob": "*",
     "glob-promise": "^3.1.0",
     "ignore-loader": "^0.1.2",
+    "isomorphic-fetch": "^2.2.1",
+    "json-server": "^0.9.6",
     "next": "beta",
+    "next-redux-wrapper": "^1.0.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "react-scroll": "^1.4.7",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.1",
     "chai": "^3.5.0",
     "enzyme": "^2.7.1",
     "eslint": "^3.15.0",
