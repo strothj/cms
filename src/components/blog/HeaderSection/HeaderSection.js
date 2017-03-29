@@ -2,6 +2,7 @@ import { PropTypes } from 'react';
 import { breakpoints } from '../../shared';
 import HeaderImage from '../HeaderImage';
 import HeaderBranding from '../HeaderBranding';
+import HeaderScrollArrow from '../HeaderScrollArrow';
 
 const HeaderSection = (props) => {
   const classes = props.large ? 'header-section--size-large' : '';
@@ -45,6 +46,7 @@ const HeaderSection = (props) => {
 
       <HeaderImage />
       <HeaderBranding />
+      <HeaderScrollArrow />
     </header>
   );
 };
