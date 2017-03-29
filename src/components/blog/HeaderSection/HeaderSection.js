@@ -23,7 +23,7 @@ const HeaderSection = (props) => {
           height: 85vh;
         }
 
-        @media (min-width: ${breakpoints.FOR_TABLETS_PORTRAIT_AND_UP}) {
+        @media ${breakpoints.FOR_TABLET} {
           .header-section--size-large {
             height: 100vh;
           }

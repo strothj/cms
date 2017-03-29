@@ -1,7 +1,7 @@
 import { PropTypes } from 'react';
 import Link from 'next/link';
 import Color from 'color';
-import { breakpoints } from '../../shared';
+import { breakpoints, gutters } from '../../shared';
 import Wrapper from '../Wrapper';
 
 const HeaderBranding = (props) => {
@@ -21,7 +21,7 @@ const HeaderBranding = (props) => {
   return (
     <section className="header-branding" style={style}>
       <style jsx>{`
-        section { padding-bottom: 24px; }
+        section { padding-bottom: ${gutters(breakpoints.FOR_PHONES_ONLY, 2)}; }
 
         h1 { text-transform: uppercase; }
 
@@ -30,8 +30,8 @@ const HeaderBranding = (props) => {
           transition: color .2s;
         }
 
-        @media (min-width: ${breakpoints.FOR_TABLETS_PORTRAIT_AND_UP}) {
-          section { padding-bottom: 48px; }
+        @media ${breakpoints.FOR_TABLET} {
+          section { padding-bottom: ${gutters(breakpoints.FOR_TABLET, 2)}; }
         }
       `}</style>
       <style>{blurColor}</style>

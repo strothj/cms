@@ -1,5 +1,5 @@
 import { PropTypes } from 'react';
-import { breakpoints } from '../shared';
+import { breakpoints, gutters } from '../shared';
 
 const Wrapper = props => (
   <div className="wrapper">
@@ -8,14 +8,14 @@ const Wrapper = props => (
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: ${gutters(breakpoints.FOR_PHONES_ONLY)};
+        padding-right: ${gutters(breakpoints.FOR_PHONES_ONLY)};
       }
 
-      @media (min-width: ${breakpoints.FOR_TABLETS_PORTRAIT_AND_UP}) {
+      @media ${breakpoints.FOR_TABLET} {
         div {
-          padding-left: 20px;
-          padding-right: 20px;
+        padding-left: ${gutters(breakpoints.FOR_TABLET)};
+        padding-right: ${gutters(breakpoints.FOR_TABLET)};
         }
       }
     `}</style>
