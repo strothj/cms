@@ -3,8 +3,8 @@ const jsonServer = require('json-server');
 
 const db = {
   meta: {
-    siteTitle: 'Awesome Blog',
-    tagline: 'Just another blog',
+    siteTitle: 'ncms',
+    tagline: 'A content management system made using Next.js',
   },
   theme: {
     fonts: [
