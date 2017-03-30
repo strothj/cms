@@ -42,8 +42,8 @@ class ScrollArrow extends Component {
 
           .scroll-arrow {
             position: absolute;
-            bottom: ${gutters(breakpoints.FOR_TABLET)};
-            right: ${gutters(breakpoints.FOR_TABLET)};
+            bottom: ${gutters.FOR_TABLET_OR_DESKTOP}px;
+            right: ${gutters.FOR_TABLET_OR_DESKTOP}px;
             width: 84px;
           }
         `}</style>

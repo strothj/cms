@@ -1,6 +1,6 @@
 import PageFrame from './PageFrame';
 import * as breakpoints from './breakpoints';
-import gutters from './gutters';
+import * as gutters from './gutters';
 
 export {
   PageFrame,

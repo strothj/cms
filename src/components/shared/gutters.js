@@ -1,8 +1,2 @@
-import * as breakpoints from './breakpoints';
-
-export default (bp, multiplier) => {
-  let size = 16;
-  if (bp === breakpoints.FOR_TABLET || bp === breakpoints.FOR_DESKTOP) size = 24;
-  if (multiplier) size *= multiplier;
-  return `${size}px`;
-};
+export const FOR_PHONE = 16;
+export const FOR_TABLET_OR_DESKTOP = 24;

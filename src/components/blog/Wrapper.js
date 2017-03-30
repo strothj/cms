@@ -8,14 +8,14 @@ const Wrapper = props => (
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
-        padding-left: ${gutters(breakpoints.FOR_PHONES_ONLY)};
-        padding-right: ${gutters(breakpoints.FOR_PHONES_ONLY)};
+        padding-left: ${gutters.FOR_PHONE}px;
+        padding-right: ${gutters.FOR_PHONE}px;
       }
 
       @media ${breakpoints.FOR_TABLET} {
         div {
-        padding-left: ${gutters(breakpoints.FOR_TABLET)};
-        padding-right: ${gutters(breakpoints.FOR_TABLET)};
+        padding-left: ${gutters.FOR_TABLET_OR_DESKTOP}px;
+        padding-right: ${gutters.FOR_TABLET_OR_DESKTOP}px;
         }
       }
     `}</style>

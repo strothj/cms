@@ -21,7 +21,7 @@ const HeaderBranding = (props) => {
   return (
     <section className="header-branding" style={style}>
       <style jsx>{`
-        section { padding-bottom: ${gutters(breakpoints.FOR_PHONES_ONLY, 2)}; }
+        section { padding-bottom: ${gutters.FOR_PHONE * 2}px; }
 
         h1 {
           text-transform: uppercase;
@@ -37,7 +37,7 @@ const HeaderBranding = (props) => {
         }
 
         @media ${breakpoints.FOR_TABLET} {
-          section { padding-bottom: ${gutters(breakpoints.FOR_TABLET, 2)}; }
+          section { padding-bottom: ${gutters.FOR_TABLET_OR_DESKTOP * 2}px; }
 
           h1 { font-size: 3rem; }
         }
