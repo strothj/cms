@@ -1,7 +1,8 @@
-import { breakpoints, gutters } from '../../shared';
-import Wrapper from '../Wrapper';
+import { breakpoints, gutters } from '../shared';
+import Wrapper from './Wrapper';
+import PageTitle from './PageTitle';
 
-/* eslint-disable */
+/* eslint-disable react/prop-types */
 const ContentSection = (props) => {
   const styles = {
     backgroundColor: props.backgroundColor,
@@ -10,41 +11,41 @@ const ContentSection = (props) => {
 
   return (
     <main id="content-section" className="content-section" style={styles}>
+      <Wrapper>
+        {props.pageTitle &&
+          <PageTitle title={props.pageTitle} color={props.pageTitleColor} />
+        }
+        <div className="primary-content">
+          {props.children}
+        </div>
+        <div className="secondary-content">
+          <span>Placeholder</span>
+        </div>
+
+      </Wrapper>
+
       <style jsx>{`
         .content-section {
           padding-top: ${gutters.FOR_PHONE * 2}px;
           min-height: 33vh;
         }
 
-        .page-header {
-          padding-bottom: ${gutters.FOR_PHONE * 2}px;
-        }
-
         @media ${breakpoints.FOR_TABLET} {
           .content-section {
             padding-top: ${gutters.FOR_TABLET_OR_DESKTOP * 4}px;
           }
-
-          .page-header {
-            padding-bottom: ${gutters.FOR_TABLET_OR_DESKTOP * 2}px;
-          }
         }
       `}</style>
-      <Wrapper>
-        {props.pageTitle &&
-        <div className="page-header">
-          <h1>{props.pageTitle}</h1>
-        </div>
-        }
-      </Wrapper>
     </main>
   );
 };
 
 ContentSection.defaultProps = {
   pageTitle: 'Posts',
+  pageTitleColor: 'black',
   backgroundColor: 'white',
   font: 'Roboto',
 };
+
 
 export default ContentSection;
