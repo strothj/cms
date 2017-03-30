@@ -29,8 +29,11 @@ const HeaderBranding = (props) => {
         }
 
         a {
-          border-bottom: none;
           transition: color .2s;
+        }
+
+        a:hover {
+          border-bottom: none;
         }
 
         @media ${breakpoints.FOR_TABLET} {
