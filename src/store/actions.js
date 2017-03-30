@@ -1,7 +1,6 @@
 import ApiClient from '../api/client';
 
-// TODO: Get server url from configuration.
-const apiClient = new ApiClient(typeof window !== 'object' ? 'http://localhost:3000/api' : null);
+const apiClient = new ApiClient(typeof window !== 'object' ? `http://localhost:${process.env.PORT}/api` : null);
 
 export const SET_ROUTE_NAME = 'SET_ROUTE_NAME';
 export const FETCH_SITE_META = 'FETCH_SITE_META';
