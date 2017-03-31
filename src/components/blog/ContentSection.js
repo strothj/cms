@@ -1,8 +1,11 @@
+import { PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import { breakpoints, spacing } from './styles';
 import Row from './Row';
 import PageTitle from './PageTitle';
+import SidebarSection from './SidebarSection';
 
-/* eslint-disable react/prop-types */
 const ContentSection = (props) => {
   const styles = {
     backgroundColor: props.backgroundColor,
@@ -21,7 +24,7 @@ const ContentSection = (props) => {
           {props.children}
         </section>
         <aside>
-          <span>Placeholder</span>
+          <SidebarSection />
         </aside>
 
       </Row>
@@ -32,9 +35,28 @@ const ContentSection = (props) => {
           min-height: 33vh;
         }
 
+        /* Create a vertical gap between content and sidebar on mobile */
+        section {
+          padding-bottom: ${spacing.phone * 6}px;
+        }
+
         @media ${breakpoints.tablet} {
           main {
             padding-top: ${spacing.tablet * 4}px;
+          }
+
+          section {
+            float: left;
+            width: 58%;
+          }
+
+          aside {
+            float: right;
+            width: 36%;
+          }
+
+          section + aside::after {
+            clear: both;
           }
         }
       `}</style>
@@ -42,12 +64,35 @@ const ContentSection = (props) => {
   );
 };
 
-ContentSection.defaultProps = {
-  pageTitle: 'Posts',
-  pageTitleColor: 'black',
-  backgroundColor: 'white',
-  font: 'Roboto',
+ContentSection.propTypes = {
+  pageTitle: PropTypes.string,
+  pageTitleColor: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
+  font: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
+const mapStateToProps = ({
+  // state
+  theme: {
+    contentTitleColor,
+    contentBackgroundColor,
+    contentFont,
+  },
+}, {
+  // props
+  title,
+  children,
+}) => ({
+  pageTitle: title,
+  pageTitleColor: contentTitleColor,
+  backgroundColor: contentBackgroundColor,
+  font: contentFont,
+  children,
+});
 
-export default ContentSection;
+ContentSection.defaultProps = {
+  pageTitle: null,
+};
+
+export default connect(mapStateToProps)(ContentSection);

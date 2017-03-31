@@ -21,7 +21,9 @@ class IndexPage extends Component {
       <PageFrame>
         <BlogWrapper>
           <HeaderSection />
-          <ContentSection />
+          <ContentSection title="Posts">
+            <p>index page content placeholder</p>
+          </ContentSection>
         </BlogWrapper>
       </PageFrame>
     );
