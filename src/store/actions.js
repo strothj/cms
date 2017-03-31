@@ -1,6 +1,10 @@
 import ApiClient from '../api/client';
 
-const apiClient = new ApiClient(typeof window !== 'object' ? `http://localhost:${process.env.PORT}/api` : null);
+let apiClient;
+if (typeof window !== 'object') {
+  const port = process.env.PORT || 3000;
+  apiClient = new ApiClient(`http://localhost:${port}/api`);
+} else { apiClient = new ApiClient(); }
 
 export const SET_ROUTE_NAME = 'SET_ROUTE_NAME';
 export const FETCH_SITE_META = 'FETCH_SITE_META';
