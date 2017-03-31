@@ -14,6 +14,7 @@ const db = {
     headerImage: '/static/images/header-image.jpg',
     headerFont: 'Quicksand',
     headerColor: '#fff',
+    contentFont: 'Roboto',
     contentTitleColor: '#222',
     contentBackgroundColor: '#fff',
   },
