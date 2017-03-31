@@ -1,5 +1,5 @@
-import { breakpoints, gutters } from '../shared';
-import Wrapper from './Wrapper';
+import { breakpoints, spacing } from './styles';
+import Row from './Row';
 import PageTitle from './PageTitle';
 
 /* eslint-disable react/prop-types */
@@ -10,29 +10,31 @@ const ContentSection = (props) => {
   };
 
   return (
-    <main id="content-section" className="content-section" style={styles}>
-      <Wrapper>
+    <main id="content-section" style={styles}>
+      <Row>
         {props.pageTitle &&
-          <PageTitle title={props.pageTitle} color={props.pageTitleColor} />
+          <header>
+            <PageTitle title={props.pageTitle} color={props.pageTitleColor} />
+          </header>
         }
-        <div className="primary-content">
+        <section>
           {props.children}
-        </div>
-        <div className="secondary-content">
+        </section>
+        <aside>
           <span>Placeholder</span>
-        </div>
+        </aside>
 
-      </Wrapper>
+      </Row>
 
       <style jsx>{`
-        .content-section {
-          padding-top: ${gutters.FOR_PHONE * 2}px;
+        main {
+          padding-top: ${spacing.phone * 2}px;
           min-height: 33vh;
         }
 
-        @media ${breakpoints.FOR_TABLET} {
-          .content-section {
-            padding-top: ${gutters.FOR_TABLET_OR_DESKTOP * 4}px;
+        @media ${breakpoints.tablet} {
+          main {
+            padding-top: ${spacing.tablet * 4}px;
           }
         }
       `}</style>

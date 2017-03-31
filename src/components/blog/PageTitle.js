@@ -1,5 +1,5 @@
 import { PropTypes } from 'react';
-import { breakpoints, gutters } from '../shared';
+import { breakpoints, spacing } from './styles';
 
 const PageTitle = (props) => {
   const styles = {
@@ -7,27 +7,25 @@ const PageTitle = (props) => {
   };
 
   return (
-    <div className="page-header">
-      <h1 className="page-title" style={styles}>{props.title}</h1>
+    <h1 style={styles}>
+      {props.title}
+
       <style jsx>{`
-        div {
-          padding-bottom: ${gutters.FOR_PHONE * 2}px;
-        }
-
-        @media ${breakpoints.FOR_TABLET} {
-          div {
-            padding-bottom: ${gutters.FOR_TABLET_OR_DESKTOP * 2}px;
-          }
-        }
-
         h1 {
-          font-size: 1.1rem;
+          padding-bottom: ${spacing.phone * 2}px;
+          font-size: 1.0rem;
           text-transform: uppercase;
           letter-spacing: 0.2rem;
           font-weight: 800;
         }
+
+        @media ${breakpoints.tablet} {
+          h1 {
+            padding-bottom: ${spacing.tablet * 2}px;
+          }
+        }
       `}</style>
-    </div>
+    </h1>
   );
 };
 

@@ -1,9 +1,6 @@
 import PageFrame from './PageFrame';
-import * as breakpoints from './breakpoints';
-import * as gutters from './gutters';
 
 export {
+   // eslint-disable-next-line import/prefer-default-export
   PageFrame,
-  breakpoints,
-  gutters,
 };
