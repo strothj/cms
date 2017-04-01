@@ -10,9 +10,11 @@ const SidebarList = (props) => {
 
       <style jsx>{`
         li {
-          display: block;
           border-bottom: 1px solid #ddd;
           padding: ${spacing.phone / 2}px 0;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
         }`
       }</style>
     </li>
