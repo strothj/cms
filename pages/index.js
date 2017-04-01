@@ -12,6 +12,7 @@ class IndexPage extends Component {
     await Promise.all([
       store.dispatch(actions.fetchSiteMeta()),
       store.dispatch(actions.fetchTheme()),
+      store.dispatch(actions.fetchRecent()),
     ]);
     return {};
   }

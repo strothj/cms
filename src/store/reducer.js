@@ -12,6 +12,10 @@ const handlers = {
   [actions.FETCH_THEME_SUCCESS](state, { theme }) {
     return { ...state, theme };
   },
+
+  [actions.FETCH_RECENT_SUCCESS](state, { recent }) {
+    return { ...state, recent };
+  },
 };
 
 const reducer = (state = {}, action) => {

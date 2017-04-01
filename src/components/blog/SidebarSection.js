@@ -1,5 +1,7 @@
+import SidebarRecentPosts from './SidebarRecentPosts';
+
 const SidebarSection = () => (
-  <p>sidebar section placeholder</p>
+  <SidebarRecentPosts />
 );
 
 export default SidebarSection;

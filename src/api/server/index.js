@@ -14,7 +14,7 @@ const db = {
     headerImage: '/static/images/header-image.jpg',
     headerFont: 'Quicksand',
     headerColor: '#fff',
-    contentFont: 'Roboto',
+    contentFont: 'Quicksand',
     contentTitleColor: '#222',
     contentBackgroundColor: '#fff',
   },
@@ -22,7 +22,7 @@ const db = {
     {
       id: '1',
       title: 'Aliquip commodo laboris elit',
-      permalink: 'aliquip-commodo',
+      permalink: 'aliquip-commodo-laboris-elit',
       featuredImage: 'https://placekitten.com/250/350',
       content: `# Sunt Lorem ea do proident adipisicing mollit incididunt exercitation nisi officia in.
 
@@ -30,6 +30,15 @@ const db = {
       `,
     },
   ],
+  recent: {
+    posts: [
+      { id: '1', title: 'Aliquip commodo laboris elit', href: '/2017/04/01/aliquip-commodo' },
+      { id: '2', title: 'Lorem ipsum dolor sit amet', href: '/2017/04/01/lorem-ipsum-dolor-sit-amet' },
+      { id: '3', title: 'consectetur adipisicing elit', href: '/2017/04/01/consectetur-adipisicing-elit' },
+      { id: '4', title: 'adipisicing elit. Consequuntur, in!', href: '/2017/04/01/adipisicing-elit-consequuntur-in' },
+      { id: '5', title: 'elit. Sed, rerum, vel. Facilis at tenetur nobis.', href: '/2017/04/01/elit-sed-rerum-vel-facilis-at-tenetur-nobis' },
+    ],
+  },
 };
 const jsonRouter = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
