@@ -72,6 +72,10 @@ ContentSection.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+ContentSection.defaultProps = {
+  pageTitle: null,
+};
+
 const mapStateToProps = ({
   // state
   theme: {
@@ -90,9 +94,5 @@ const mapStateToProps = ({
   font: contentFont,
   children,
 });
-
-ContentSection.defaultProps = {
-  pageTitle: null,
-};
 
 export default connect(mapStateToProps)(ContentSection);

@@ -11,6 +11,8 @@ export const FETCH_SITE_META = 'FETCH_SITE_META';
 export const FETCH_SITE_META_SUCCESS = 'FETCH_SITE_META_SUCCESS';
 export const FETCH_THEME = 'FETCH_THEME';
 export const FETCH_THEME_SUCCESS = 'FETCH_THEME_SUCCESS';
+export const FETCH_RECENT = 'FETCH_RECENT';
+export const FETCH_RECENT_SUCCESS = 'FETCH_RECENT_SUCCESS';
 
 export const setRouteName = routeName => ({
   type: SET_ROUTE_NAME,
@@ -37,5 +39,16 @@ export const fetchThemeSuccess = theme => ({
 export const fetchTheme = () => dispatch => apiClient.themeGet()
   .then((theme) => {
     dispatch(fetchThemeSuccess(theme));
+  });
+  // TODO: Add error handling
+
+export const fetchRecentSuccess = recent => ({
+  type: FETCH_RECENT_SUCCESS,
+  recent,
+});
+
+export const fetchRecent = () => dispatch => apiClient.recentGet()
+  .then((recent) => {
+    dispatch(fetchRecentSuccess(recent));
   });
   // TODO: Add error handling

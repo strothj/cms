@@ -30,6 +30,10 @@ class ApiClient {
   themeGet() {
     return this.fetchPath('/theme');
   }
+
+  recentGet() {
+    return this.fetchPath('/recent');
+  }
 }
 
 export default ApiClient;
