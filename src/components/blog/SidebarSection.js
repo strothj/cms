@@ -1,7 +1,8 @@
-import { RecentComments, RecentPosts } from './sidebar-widgets';
+import { RecentComments, RecentPosts, Search } from './sidebar-widgets';
 
 const SidebarSection = () => (
   <div>
+    <Search />
     <RecentPosts />
     <RecentComments />
   </div>
