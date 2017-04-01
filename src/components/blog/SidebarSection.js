@@ -1,10 +1,9 @@
-import SidebarRecentPosts from './SidebarRecentPosts';
-import SidebarRecentComments from './SidebarRecentComments';
+import { RecentComments, RecentPosts } from './sidebar-widgets';
 
 const SidebarSection = () => (
   <div>
-    <SidebarRecentPosts />
-    <SidebarRecentComments />
+    <RecentPosts />
+    <RecentComments />
   </div>
 );
 

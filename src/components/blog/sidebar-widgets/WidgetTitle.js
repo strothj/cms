@@ -1,8 +1,8 @@
 import { PropTypes } from 'react';
 
-import { spacing } from './styles';
+import { spacing } from '../styles';
 
-const SidebarTitle = props => (
+const WidgetTitle = props => (
   <header>
     <h1>{props.title}</h1>
 
@@ -17,6 +17,6 @@ const SidebarTitle = props => (
   </header>
 );
 
-SidebarTitle.propTypes = { title: PropTypes.string.isRequired };
+WidgetTitle.propTypes = { title: PropTypes.string.isRequired };
 
-export default SidebarTitle;
+export default WidgetTitle;

@@ -1,9 +1,9 @@
 import { PropTypes } from 'react';
 
-import { breakpoints, spacing } from './styles';
-import SidebarTitle from './SidebarTitle';
+import { breakpoints, spacing } from '../styles';
+import WidgetTitle from './WidgetTitle';
 
-const SidebarList = (props) => {
+const ListWidget = (props) => {
   const items = props.items.map(item => (
     <li key={item.key}>
       {item.children}
@@ -22,7 +22,7 @@ const SidebarList = (props) => {
 
   return (
     <section>
-      {props.title && <SidebarTitle title={props.title} /> }
+      {props.title && <WidgetTitle title={props.title} /> }
 
       <main>
         <ul>
@@ -51,7 +51,7 @@ const SidebarList = (props) => {
   );
 };
 
-SidebarList.propTypes = {
+ListWidget.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string,
     children: PropTypes.node,
@@ -59,6 +59,6 @@ SidebarList.propTypes = {
   title: PropTypes.string,
 };
 
-SidebarList.defaultProps = { title: null };
+ListWidget.defaultProps = { title: null };
 
-export default SidebarList;
+export default ListWidget;

@@ -1,10 +1,10 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import SidebarList from './SidebarList';
-import Link from './Link';
+import ListWidget from './ListWidget';
+import Link from '../Link';
 
-const SidebarRecentPosts = (props) => {
+const RecentPosts = (props) => {
   const items = props.posts.map(post => (
     {
       key: post.id,
@@ -13,11 +13,11 @@ const SidebarRecentPosts = (props) => {
   ));
 
   return (
-    <SidebarList title="Recent Posts" items={items} />
+    <ListWidget title="Recent Posts" items={items} />
   );
 };
 
-SidebarRecentPosts.propTypes = {
+RecentPosts.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
@@ -31,4 +31,4 @@ const mapStateToProps = ({
   posts,
 });
 
-export default connect(mapStateToProps)(SidebarRecentPosts);
+export default connect(mapStateToProps)(RecentPosts);
