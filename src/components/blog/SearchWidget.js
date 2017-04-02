@@ -1,6 +1,6 @@
 import { PropTypes } from 'react';
 
-import { breakpoints, spacing } from '../styles';
+import { breakpoints, spacing } from './styles';
 
 const Search = () => (
   <section>

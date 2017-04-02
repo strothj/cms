@@ -1,6 +1,6 @@
 import { PropTypes } from 'react';
 
-import { spacing } from '../styles';
+import { spacing } from './styles';
 
 const WidgetTitle = props => (
   <header>

@@ -39,9 +39,9 @@ const db = {
       { id: '5', title: 'elit. Sed, rerum, vel. Facilis at tenetur nobis.', href: '/2017/04/01/elit-sed-rerum-vel-facilis-at-tenetur-nobis' },
     ],
     comments: [
-      { id: '2', user: 'someUser', post: 'Lorem ipsum dolor sit amet', href: '/2017/04/01/lorem-ipsum-dolor-sit-amet/#comment-2' },
-      { id: '1', user: 'Another Dude', post: 'Lorem ipsum dolor sit amet', href: '/2017/04/01/lorem-ipsum-dolor-sit-amet/#comment-1' },
-      { id: '3', user: 'someUser', post: 'adipisicing elit. Consequuntur, in!', href: '/2017/04/01/adipisicing-elit-consequuntur-in/#comment-1' },
+      { id: '1', pretext: 'someUser on', title: 'Lorem ipsum dolor sit amet', href: '/2017/04/01/lorem-ipsum-dolor-sit-amet/#comment-2' },
+      { id: '2', pretext: 'Another Dude on', title: 'Lorem ipsum dolor sit amet', href: '/2017/04/01/lorem-ipsum-dolor-sit-amet/#comment-1' },
+      { id: '3', pretext: 'someUser on', title: 'adipisicing elit. Consequuntur, in!', href: '/2017/04/01/adipisicing-elit-consequuntur-in/#comment-1' },
     ],
     archives: [
       { id: '1', title: 'March 2017', href: '/2017/04/' },

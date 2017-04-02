@@ -1,17 +1,33 @@
-import {
-  Archives,
-  RecentComments,
-  RecentPosts,
-  Search,
-} from './sidebar-widgets';
+import { connect } from 'react-redux';
 
-const SidebarSection = () => (
+import SearchWidget from './SearchWidget';
+import ListWidget, { itemsPropType } from './ListWidget';
+
+const SidebarSection = props => (
   <div>
-    <Search />
-    <RecentPosts />
-    <RecentComments />
-    <Archives />
+    <SearchWidget />
+    <ListWidget title="Recent Posts" items={props.posts} />
+    <ListWidget title="Recent Comments" items={props.comments} />
+    <ListWidget title="Archives" items={props.archives} />
   </div>
 );
 
-export default SidebarSection;
+SidebarSection.propTypes = {
+  posts: itemsPropType,
+  comments: itemsPropType,
+  archives: itemsPropType,
+};
+
+SidebarSection.defaultProps = {
+  posts: [],
+  comments: [],
+  archives: [],
+};
+
+const mapStateToProps = state => ({
+  posts: state.recent.posts,
+  comments: state.recent.comments,
+  archives: state.recent.archives,
+});
+
+export default connect(mapStateToProps)(SidebarSection);
