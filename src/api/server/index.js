@@ -46,6 +46,14 @@ const db = {
     archives: [
       { id: '1', title: 'March 2017', href: '/2017/04/' },
     ],
+    categories: [
+      { id: '1', title: 'Cool stuff', href: '/category/cool-stuff/' },
+      { id: '2', title: 'Uncategorized', href: '/category/uncategorized/' },
+    ],
+    links: [
+      { id: '1', title: 'Log in', href: '/login' },
+      { id: '2', title: 'Github Page', href: 'https://github.com/strothj/ncms' },
+    ],
   },
 };
 const jsonRouter = jsonServer.router(db);
