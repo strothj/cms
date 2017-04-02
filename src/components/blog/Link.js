@@ -15,7 +15,7 @@ const Link = props => (
         }
 
         a:hover {
-          border-bottom: solid 5px;
+          border-bottom: solid 3px;
         }
 
         .link-fade {

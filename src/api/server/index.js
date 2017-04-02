@@ -38,6 +38,22 @@ const db = {
       { id: '4', title: 'adipisicing elit. Consequuntur, in!', href: '/2017/04/01/adipisicing-elit-consequuntur-in' },
       { id: '5', title: 'elit. Sed, rerum, vel. Facilis at tenetur nobis.', href: '/2017/04/01/elit-sed-rerum-vel-facilis-at-tenetur-nobis' },
     ],
+    comments: [
+      { id: '1', pretext: 'someUser on', title: 'Lorem ipsum dolor sit amet', href: '/2017/04/01/lorem-ipsum-dolor-sit-amet/#comment-2' },
+      { id: '2', pretext: 'Another Dude on', title: 'Lorem ipsum dolor sit amet', href: '/2017/04/01/lorem-ipsum-dolor-sit-amet/#comment-1' },
+      { id: '3', pretext: 'someUser on', title: 'adipisicing elit. Consequuntur, in!', href: '/2017/04/01/adipisicing-elit-consequuntur-in/#comment-1' },
+    ],
+    archives: [
+      { id: '1', title: 'March 2017', href: '/2017/04/' },
+    ],
+    categories: [
+      { id: '1', title: 'Cool stuff', href: '/category/cool-stuff/' },
+      { id: '2', title: 'Uncategorized', href: '/category/uncategorized/' },
+    ],
+    links: [
+      { id: '1', title: 'Log in', href: '/login' },
+      { id: '2', title: 'Github Page', href: 'https://github.com/strothj/ncms' },
+    ],
   },
 };
 const jsonRouter = jsonServer.router(db);
