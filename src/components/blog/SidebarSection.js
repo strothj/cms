@@ -35,7 +35,7 @@ const mapStateToProps = state => ({
   comments: state.recent.comments,
   archives: state.recent.archives,
   categories: state.recent.archives,
-  links: state.recent.archives,
+  links: state.recent.links,
 });
 
 export default connect(mapStateToProps)(SidebarSection);
