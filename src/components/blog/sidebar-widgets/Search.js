@@ -52,6 +52,7 @@ const Search = () => (
         border: none;
         background-color: #222;
         line-height: 5;
+        cursor: pointer;
       }
     `}</style>
   </section>
