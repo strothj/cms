@@ -43,6 +43,9 @@ const db = {
       { id: '1', user: 'Another Dude', post: 'Lorem ipsum dolor sit amet', href: '/2017/04/01/lorem-ipsum-dolor-sit-amet/#comment-1' },
       { id: '3', user: 'someUser', post: 'adipisicing elit. Consequuntur, in!', href: '/2017/04/01/adipisicing-elit-consequuntur-in/#comment-1' },
     ],
+    archives: [
+      { id: '1', title: 'March 2017', href: '/2017/04/' },
+    ],
   },
 };
 const jsonRouter = jsonServer.router(db);
