@@ -3,27 +3,38 @@ import { Converter as MarkdownToHtmlConverter } from 'showdown';
 import { Parser as HtmlToReactParser } from 'html-to-react';
 
 import { breakpoints, spacing } from './styles';
+import PostHeader from './PostHeader';
 
 const Post = (props) => {
   const converter = new MarkdownToHtmlConverter();
-  converter.setOption('noHeaderId', true);
-  const htmlToReactParser = new HtmlToReactParser();
-
+  converter.setOption('prefixHeaderId', props.post.permalink);
   const html = converter.makeHtml(props.post.content);
-  const reactHtml = htmlToReactParser.parse(html);
+
+  const htmlToReactParser = new HtmlToReactParser();
+  const markdownNodes = htmlToReactParser.parse(html);
+
 
   return (
-    <article className="post-content">
-      <header>
-        <h1>{props.post.title}</h1>
-      </header>
-      <main>
-        {reactHtml}
+    <article>
+      <PostHeader {...props.post} selected={props.post.selected} />
+      <main className="post-content">
+        {markdownNodes}
       </main>
 
+      <style jsx>{`
+        article {
+          padding-bottom: ${spacing.phone * 4}px;
+        }
+
+        @media ${breakpoints.tablet} {
+          article {
+            padding-bottom: ${spacing.tablet * 4}px;
+          }
+        }
+      `}</style>
+
       <style jsx global>{`
-        .post-content img, pre, code {
-          display: block;
+        .post-content img {
           width: 100%;
         }
       `}</style>
@@ -32,14 +43,19 @@ const Post = (props) => {
 };
 
 export const postPropType = {
-  id: PropTypes.string,
+  publishTimestamp: PropTypes.number,
   title: PropTypes.string,
   permalink: PropTypes.string,
+  featuredImage: PropTypes.string,
+  featuredImageCaption: PropTypes.string,
   content: PropTypes.string,
 };
 
 Post.propTypes = {
   post: PropTypes.shape(postPropType).isRequired,
+  selected: PropTypes.bool,
 };
+
+Post.defaultProps = { selected: false };
 
 export default Post;
