@@ -1,19 +1,32 @@
 import { PropTypes } from 'react';
+import { Converter as MarkdownToHtmlConverter } from 'showdown';
+import { Parser as HtmlToReactParser } from 'html-to-react';
 
 import { breakpoints, spacing } from './styles';
 
 const Post = (props) => {
-  console.log(); // eslint-disable-line no-console
+  const converter = new MarkdownToHtmlConverter();
+  converter.setOption('noHeaderId', true);
+  const htmlToReactParser = new HtmlToReactParser();
+
+  const html = converter.makeHtml(props.post.content);
+  const reactHtml = htmlToReactParser.parse(html);
 
   return (
-    <article>
+    <article className="post-content">
       <header>
         <h1>{props.post.title}</h1>
       </header>
       <main>
-        {}
+        {reactHtml}
       </main>
 
+      <style jsx global>{`
+        .post-content img, pre, code {
+          display: block;
+          width: 100%;
+        }
+      `}</style>
     </article>
   );
 };

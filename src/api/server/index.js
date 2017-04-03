@@ -24,7 +24,7 @@ const db = {
       title: 'twitch split',
       permalink: 'twitch-split',
       featuredImage: 'https://raw.githubusercontent.com/strothj/twitch-split/master/screenshots/twitch-split-0.png',
-      content: `# twitch split
+      content: `
 Thinkful ([https://www.thinkful.com](https://www.thinkful.com))
 end of unit portfolio project - a multi-stream viewer for the [Twitch.tv](https://twitch.tv) service with sharable links.
 
