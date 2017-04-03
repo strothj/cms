@@ -22,17 +22,20 @@
     "express": "^4.15.2",
     "glob": "*",
     "glob-promise": "^3.1.0",
+    "html-to-react": "^1.2.4",
     "ignore-loader": "^0.1.2",
     "isomorphic-fetch": "^2.2.1",
     "json-server": "^0.9.6",
-    "next": "beta",
+    "moment": "^2.18.1",
+    "next": "^2.0.1",
     "next-redux-wrapper": "^1.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
     "react-scroll": "^1.4.7",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "showdown": "^1.6.4"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.1",

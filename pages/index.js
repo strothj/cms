@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import withRedux from 'next-redux-wrapper';
+
 import { actions, makeStore } from '../src/store';
 import { PageFrame } from '../src/components/shared';
-import { BlogWrapper, ContentSection, HeaderSection } from '../src/components/blog';
+import { BlogWrapper, ContentSection, HeaderSection, PostList } from '../src/components/blog';
 
 class IndexPage extends Component {
   static async getInitialProps({ store }) {
@@ -13,6 +14,7 @@ class IndexPage extends Component {
       store.dispatch(actions.fetchSiteMeta()),
       store.dispatch(actions.fetchTheme()),
       store.dispatch(actions.fetchRecent()),
+      store.dispatch(actions.fetchPosts()),
     ]);
     return {};
   }
@@ -23,7 +25,7 @@ class IndexPage extends Component {
         <BlogWrapper>
           <HeaderSection />
           <ContentSection title="Posts">
-            <p>index page content placeholder</p>
+            <PostList />
           </ContentSection>
         </BlogWrapper>
       </PageFrame>
