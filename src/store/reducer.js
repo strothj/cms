@@ -16,6 +16,10 @@ const handlers = {
   [actions.FETCH_RECENT_SUCCESS](state, { recent }) {
     return { ...state, recent };
   },
+
+  [actions.FETCH_POSTS_SUCCESS](state, { posts }) {
+    return { ...state, posts };
+  },
 };
 
 const reducer = (state = {}, action) => {

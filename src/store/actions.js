@@ -13,6 +13,8 @@ export const FETCH_THEME = 'FETCH_THEME';
 export const FETCH_THEME_SUCCESS = 'FETCH_THEME_SUCCESS';
 export const FETCH_RECENT = 'FETCH_RECENT';
 export const FETCH_RECENT_SUCCESS = 'FETCH_RECENT_SUCCESS';
+export const FETCH_POSTS = 'FETCH_POSTS';
+export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 
 export const setRouteName = routeName => ({
   type: SET_ROUTE_NAME,
@@ -50,5 +52,16 @@ export const fetchRecentSuccess = recent => ({
 export const fetchRecent = () => dispatch => apiClient.recentGet()
   .then((recent) => {
     dispatch(fetchRecentSuccess(recent));
+  });
+  // TODO: Add error handling
+
+export const fetchPostsSuccess = posts => ({
+  type: FETCH_POSTS_SUCCESS,
+  posts,
+});
+
+export const fetchPosts = () => dispatch => apiClient.postsGet()
+  .then((posts) => {
+    dispatch(fetchPostsSuccess(posts));
   });
   // TODO: Add error handling

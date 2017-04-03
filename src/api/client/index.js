@@ -34,6 +34,10 @@ class ApiClient {
   recentGet() {
     return this.fetchPath('/recent');
   }
+
+  postsGet() {
+    return this.fetchPath('/posts');
+  }
 }
 
 export default ApiClient;
